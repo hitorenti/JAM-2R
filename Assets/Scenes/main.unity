@@ -385,8 +385,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782101749}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.174, y: -0.849, z: 0}
-  m_LocalScale: {x: 20, y: 0.6965, z: 1}
+  m_LocalPosition: {x: -15.4034, y: -0.849, z: 0}
+  m_LocalScale: {x: 36.106, y: 0.6965, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -780,6 +780,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  DashSpeed: 16
+  NextDashingSeconds: 7
+  DashDurationSeconds: 0.5
+  DashIdleDurationSeconds: 0.2
 --- !u!114 &1321475652
 MonoBehaviour:
   m_ObjectHideFlags: 0
