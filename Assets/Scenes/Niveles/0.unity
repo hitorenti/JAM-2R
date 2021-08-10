@@ -86892,7 +86892,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 1496700679}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 45622cbbe131d864e849a3b93fccb92a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -87849,9 +87849,17 @@ PrefabInstance:
       propertyPath: JumpForce
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 2411954141753074108, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+      propertyPath: RayDistance
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 2411954141753074117, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5769426722400363562, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}

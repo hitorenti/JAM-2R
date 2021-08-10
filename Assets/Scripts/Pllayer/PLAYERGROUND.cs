@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckGround : MonoBehaviour
+public class PLAYERGROUND : MonoBehaviour
 {
-    public static bool IsGround;
+    [HideInInspector]
+    public bool IsJump;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground"))
+        if (collision.transform.tag.Equals("GROUND"))
         {
-            IsGround = true;
+            IsJump = false;
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground"))
+        if (collision.transform.tag.Equals("GROUND"))
         {
-            IsGround = false;
+            IsJump = true;
         }
     }
 }
