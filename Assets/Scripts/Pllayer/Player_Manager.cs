@@ -15,14 +15,19 @@ public class Player_Manager : MonoBehaviour
         pj = this.gameObject.GetComponent<Player_Jump>();
     }
 
+    public void EndDeathAnimation()
+    {
+        anim.SetBool("death", false);
+    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("ENEMY"))
         {
             if (!pj.IsOverEnemy)
             {
-                Damage(0);
-
+                //Damage(0);
+                Death();
             }
 
         }
@@ -52,5 +57,10 @@ public class Player_Manager : MonoBehaviour
         }
         anim.SetBool("damage", true);
 
+    }
+
+    private void Death()
+    {
+        anim.SetBool("death", true);
     }
 }

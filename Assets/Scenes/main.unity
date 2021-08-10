@@ -783,7 +783,6 @@ MonoBehaviour:
   DashSpeed: 16
   NextDashingSeconds: 7
   DashDurationSeconds: 0.5
-  DashIdleDurationSeconds: 0.2
 --- !u!114 &1321475652
 MonoBehaviour:
   m_ObjectHideFlags: 0
