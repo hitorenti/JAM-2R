@@ -148,7 +148,7 @@ public class Player_Movement : MonoBehaviour
 
         for (dashTimeBuffer = NextDashingSeconds;dashTimeBuffer > 0; dashTimeBuffer -= Time.deltaTime)
         {
-            Debug.Log(dashTimeBuffer);
+            Debug.Log($"Time for next dashing: {dashTimeBuffer}");
             yield return null;
             
         }
