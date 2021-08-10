@@ -42,8 +42,12 @@ public class Player_Movement : MonoBehaviour
         {
             anim.SetBool("dashing", false);
 
+            if (Input.GetAxisRaw("Horizontal") == 0)
+            {
+                anim.SetBool("run", false);
 
-            if (rb2d.velocity.x > 0)
+            }
+            else if (rb2d.velocity.x > 0)
             {
                 anim.SetBool("run", true);
                 this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
@@ -53,11 +57,6 @@ public class Player_Movement : MonoBehaviour
             {
                 anim.SetBool("run", true);
                 this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-
-            }
-            else
-            {
-                anim.SetBool("run", false);
 
             }
         }
@@ -74,7 +73,6 @@ public class Player_Movement : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") == 0)
         {
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-
             if (dashing)
             {
                 StopCoroutine(Dash());

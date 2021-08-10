@@ -14,6 +14,8 @@ public class Player_Jump : MonoBehaviour
     [HideInInspector]
     public bool IsOverEnemy;
 
+    public PLAYERGROUND pg;
+
     private void Awake()
     {
         rb2d = this.gameObject.GetComponent<Rigidbody2D>();
@@ -31,20 +33,20 @@ public class Player_Jump : MonoBehaviour
         // Draw ray for ground detection
         RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, RayDistance);
 
-        IsJump = true;
+        IsJump = pg.IsJump;
 
         //? Is hit colliding?
         if (hit.collider != null)
         {
-            //? Is ground?
-            if (hit.collider.tag.Equals("GROUND"))
-            {
-                IsJump = false;
+            ////? Is ground?
+            //if (hit.collider.tag.Equals("GROUND"))
+            //{
+            //    IsJump = false;
 
-            }
+            //}
             if (hit.collider.tag.Equals("ENEMY"))
             {
-                IsJump = false;
+                //IsJump = false;
                 IsOverEnemy = true;
             }
             else
