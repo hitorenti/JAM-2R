@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -9,6 +8,7 @@ public class Player_Movement : MonoBehaviour
     public float DashSpeed;
     public float NextDashingSeconds;
     public float DashDurationSeconds;
+    public float SecondsForDestroyEnemy;
 
     private Rigidbody2D rb2d;
     private Animator anim;
@@ -124,6 +124,23 @@ public class Player_Movement : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Ignore on collision enter while player is dashing
+        if (collision.transform.tag.Equals("ENEMY"))
+        {
+            if (dashing)
+            {
+                // pass over enemy
+                Physics2D.IgnoreCollision(collision.collider, this.GetComponent<Collider2D>());
+                // OVER ENEMY
+                int initialLayer = this.GetComponent<SpriteRenderer>().sortingOrder;
+                this.GetComponent<SpriteRenderer>().sortingOrder = 90; 
+                StartCoroutine(WaitForDestroyEnemy(collision.gameObject, initialLayer));
+            }
+        }
+    }
+
     private float dashTimeBuffer;
     IEnumerator NextDashing()
     {
@@ -150,6 +167,16 @@ public class Player_Movement : MonoBehaviour
         yield return new WaitForSeconds(DashDurationSeconds);
         dashing = false;
         StartCoroutine(NextDashing());
+
+    }
+
+    IEnumerator WaitForDestroyEnemy(GameObject enemy,int layer)
+    {
+        yield return new WaitForSeconds(SecondsForDestroyEnemy);
+        // Destroy enemy
+        Destroy(enemy.gameObject);
+        // Set star layer
+        this.GetComponent<SpriteRenderer>().sortingOrder = layer;
 
     }
 }

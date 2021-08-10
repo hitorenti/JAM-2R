@@ -17,7 +17,21 @@ public class Player_Manager : MonoBehaviour
 
     public void EndDeathAnimation()
     {
+        Vector2 nwPos = this.transform.position;
+
+        if (this.GetComponent<SpriteRenderer>().flipX)
+        {
+            nwPos.x += 10; //! Spawn in -10 of current position
+            this.transform.position = nwPos;
+        }
+        else
+        {
+            nwPos.x -= 10; //! Spawn in -10 of current position
+            this.transform.position = nwPos;
+        }
+
         anim.SetBool("death", false);
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -26,8 +40,8 @@ public class Player_Manager : MonoBehaviour
         {
             if (!pj.IsOverEnemy)
             {
-                //Damage(0);
-                Death();
+                Damage(0);
+                //Death();
             }
 
         }
@@ -59,6 +73,9 @@ public class Player_Manager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Activate Death animation
+    /// </summary>
     private void Death()
     {
         anim.SetBool("death", true);
