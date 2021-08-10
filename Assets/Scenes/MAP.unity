@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 869749715}
   - component: {fileID: 869749714}
+  - component: {fileID: 869749716}
   m_Layer: 0
   m_Name: RPGPlayer
   m_TagString: Untagged
@@ -206,6 +207,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &869749716
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869749713}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.02777195, y: -0.031428993}
+  m_SpriteTilingProperty:
+    border: {x: 0.125, y: 0, z: 0.1875, w: 0.0625}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6729412, y: 0.937142}
+  m_EdgeRadius: 0
 --- !u!1 &1804898511
 GameObject:
   m_ObjectHideFlags: 0
