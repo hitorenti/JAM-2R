@@ -30,31 +30,25 @@ public class Player_Jump : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Draw ray for ground detection
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, RayDistance);
+        // ! Draw ray for ENEMY DETECTION
+        //RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, RayDistance);
 
         IsJump = pg.IsJump;
 
-        //? Is hit colliding?
-        if (hit.collider != null)
-        {
-            ////? Is ground?
-            //if (hit.collider.tag.Equals("GROUND"))
-            //{
-            //    IsJump = false;
+        ////? Is hit colliding?
+        //if (hit.collider != null)
+        //{
+        //    if (hit.collider.tag.Equals("ENEMY"))
+        //    {
+        //        //IsJump = false;
+        //        IsOverEnemy = true;
+        //    }
+        //    else
+        //    {
+        //        IsOverEnemy = false;
 
-            //}
-            if (hit.collider.tag.Equals("ENEMY"))
-            {
-                //IsJump = false;
-                IsOverEnemy = true;
-            }
-            else
-            {
-                IsOverEnemy = false;
-
-            }
-        }
+        //    }
+        //}
 
         // For 2 different keys usage
         if (Input.GetAxis("Vertical")>0 && !IsJump)
