@@ -8,6 +8,9 @@ public class Player_Movement : MonoBehaviour
     public delegate void DELDashingLeftTime(float left);
     public event DELDashingLeftTime DashingLeftTime;
 
+    public delegate void DELDashingTime(float left);
+    public event DELDashingTime OnDashing;
+
     public float speed;
     public float DashSpeed;
     public float NextDashingSeconds;
@@ -144,8 +147,7 @@ public class Player_Movement : MonoBehaviour
     }
 
     private float dashTimeBuffer;
-    [HideInInspector]
-    public float leftTime = 0;
+    private float leftTime = 0;
     IEnumerator NextDashing()
     {
         NextDashingAvailable = false;
@@ -163,7 +165,7 @@ public class Player_Movement : MonoBehaviour
             
         }
 
-        if(leftTime ==  1)
+        if(leftTime > 0.9)
         {
             NextDashingAvailable = true;
 
@@ -171,12 +173,32 @@ public class Player_Movement : MonoBehaviour
 
     }
 
+    private float dshBuff;
+    private float crtdsh = 1;
     IEnumerator Dash()
     {
+        for(dshBuff = DashDurationSeconds; dshBuff > 0; dshBuff -= Time.deltaTime)
+        {
+            // CALCULATE
+            crtdsh = float.Parse((dshBuff/DashDurationSeconds).ToString("F2"));
+            // REPORT
+            OnDashing(crtdsh);
 
-        yield return new WaitForSeconds(DashDurationSeconds);
-        dashing = false;
-        StartCoroutine(NextDashing());
+            yield return null;
+        }
+
+        //! PREV
+        //yield return new WaitForSeconds(DashDurationSeconds);
+        //dashing = false;
+        //StartCoroutine(NextDashing());
+        //! PREV
+
+        if (crtdsh < 0.1)
+        {
+            dashing = false;
+            StartCoroutine(NextDashing());
+        }
+
 
     }
 
