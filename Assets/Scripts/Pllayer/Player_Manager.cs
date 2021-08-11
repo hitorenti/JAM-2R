@@ -41,7 +41,7 @@ public class Player_Manager : MonoBehaviour
         {
             if (!pj.IsOverEnemy)
             {
-                Damage(0);
+                Damage(0,false);
                 //Death();
             }
 
@@ -58,17 +58,21 @@ public class Player_Manager : MonoBehaviour
     /// Activate damage anim and take life
     /// </summary>
     /// <param name="damage">To substract</param>
-    public void Damage(int damage)
+    /// <param name="UpDamage">Damage from Up?</param>
+    public void Damage(int damage,bool UpDamage)
     {
-        if (this.GetComponent<SpriteRenderer>().flipX)
+        if (!UpDamage)
         {
-            this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x + PushForce, 0.215f), this.transform.position.y);
+            if (this.GetComponent<SpriteRenderer>().flipX)
+            {
+                this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x + PushForce, 0.215f), this.transform.position.y);
 
-        }
-        else
-        {
-            this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x - PushForce, 0.215f), this.transform.position.y);
+            }
+            else
+            {
+                this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x - PushForce, 0.215f), this.transform.position.y);
 
+            }
         }
         anim.SetBool("damage", true);
 

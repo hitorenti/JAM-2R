@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Puas : MonoBehaviour
 {
-    public Player_Manager DañoAlPlayer;
+    public Player_Manager DamageAlPlayer;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            DañoAlPlayer.Damage(PuasControl.DañoAlPersonaje) ; // colocar Dalo al player
+            DamageAlPlayer.Damage(PuasControl.DamageAlPlayer, true); // colocar Dalo al player, indicando que el dalo viene de arriba
         }
     }
 }

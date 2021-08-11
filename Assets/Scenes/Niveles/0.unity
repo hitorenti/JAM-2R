@@ -107231,6 +107231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wood_left (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2312272141444282834, guid: 7c6b583988dd43f4cbc8d0b5e7ec1fde, type: 3}
+      propertyPath: m_TagString
+      value: GROUND
+      objectReference: {fileID: 0}
     - target: {fileID: 3775940923272493025, guid: 7c6b583988dd43f4cbc8d0b5e7ec1fde, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -107321,7 +107325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec386af0db5c7d41b45ae60a467968f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "Da\xF1oAlPlayer": {fileID: 1700871675}
+  DamageAlPlayer: {fileID: 1700871675}
 --- !u!61 &1670420514
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -107394,8 +107398,8 @@ Transform:
   - {fileID: 1278535609}
   - {fileID: 756048274}
   - {fileID: 2041254}
-  - {fileID: 318231089}
   - {fileID: 1828894563}
+  - {fileID: 318231089}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107733,7 +107737,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7790055, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -107948,6 +107952,10 @@ PrefabInstance:
     - target: {fileID: 2312272141444282834, guid: 7c6b583988dd43f4cbc8d0b5e7ec1fde, type: 3}
       propertyPath: m_Name
       value: wood_left
+      objectReference: {fileID: 0}
+    - target: {fileID: 2312272141444282834, guid: 7c6b583988dd43f4cbc8d0b5e7ec1fde, type: 3}
+      propertyPath: m_TagString
+      value: GROUND
       objectReference: {fileID: 0}
     - target: {fileID: 3775940923272493025, guid: 7c6b583988dd43f4cbc8d0b5e7ec1fde, type: 3}
       propertyPath: m_RootOrder
