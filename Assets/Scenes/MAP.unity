@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 869749714}
   - component: {fileID: 869749716}
   - component: {fileID: 869749717}
+  - component: {fileID: 869749718}
   m_Layer: 0
   m_Name: RPGPlayer
   m_TagString: Untagged
@@ -183,7 +184,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4099418257374492983, guid: 85676617c44041947aa6a91787f458d5, type: 3}
+  m_Sprite: {fileID: 815424164945274260, guid: 83f89b3dab49cfa43ba23751ce63d98f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -223,7 +224,7 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.02777195, y: -0.031428993}
   m_SpriteTilingProperty:
-    border: {x: 0.125, y: 0, z: 0.1875, w: 0.0625}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
@@ -247,6 +248,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.05
+--- !u!95 &869749718
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869749713}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc3c4b53759cff344ae2ff4997d7cc2a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &965159870
 GameObject:
   m_ObjectHideFlags: 3
@@ -373,7 +393,7 @@ MonoBehaviour:
   m_Follow: {fileID: 869749715}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 7
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -458,7 +478,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
