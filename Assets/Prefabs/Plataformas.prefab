@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8419606297746254418}
   m_Layer: 0
   m_Name: Plataformas
-  m_TagString: Untagged
+  m_TagString: GROUND
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,5 +200,5 @@ MonoBehaviour:
   Animator: {fileID: 8419606298999875501}
   Collider: {fileID: 8419606298999875502}
   TiempoDeEspera: 3
-  TimeActivar: 0.5
+  Activar: 0
   Plataformas: 0

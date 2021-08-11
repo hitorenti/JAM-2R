@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Puerta : MonoBehaviour
@@ -8,7 +6,7 @@ public class Puerta : MonoBehaviour
     bool Abrir = false;
     public enum Puertas
     {
-        Derecha,Izquierda
+        Derecha, Izquierda
     }
     public Puertas Cambio;
     private void Update()

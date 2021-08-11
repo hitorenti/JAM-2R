@@ -9,8 +9,8 @@ public class Player_Jump : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private Animator anim;
-    [HideInInspector]
-    public bool IsJump;
+    //[HideInInspector]
+    //public bool IsJump;
     [HideInInspector]
     public bool IsOverEnemy;
 
@@ -25,7 +25,7 @@ public class Player_Jump : MonoBehaviour
     private void Update()
     {
         //! Animation
-        anim.SetBool("jump", IsJump);
+        anim.SetBool("jump", pg.IsJump);
     }
 
     private void FixedUpdate()
@@ -33,7 +33,7 @@ public class Player_Jump : MonoBehaviour
         // ! Draw ray for ENEMY DETECTION
         //RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, RayDistance);
 
-        IsJump = pg.IsJump;
+        //IsJump = true;
 
         ////? Is hit colliding?
         //if (hit.collider != null)
@@ -49,9 +49,9 @@ public class Player_Jump : MonoBehaviour
 
         //    }
         //}
-
+        Debug.Log(pg.IsJump);
         // For 2 different keys usage
-        if (Input.GetAxis("Vertical")>0 && !IsJump)
+        if (Input.GetAxis("Vertical")>0 && !pg.IsJump)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, JumpForce);
         }

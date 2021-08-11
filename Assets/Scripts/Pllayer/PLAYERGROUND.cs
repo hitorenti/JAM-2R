@@ -5,7 +5,7 @@ using UnityEngine;
 public class PLAYERGROUND : MonoBehaviour
 {
     [HideInInspector]
-    public bool IsJump;
+    public bool IsJump = true;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
