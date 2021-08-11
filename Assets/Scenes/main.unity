@@ -169,7 +169,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 1.3333334, y: 1}
+    m_SensorSize: {x: 1.7790055, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -639,6 +639,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3213640515183462576, guid: 22dde72a16bb5004baac5d88ee1edbfa, type: 3}
+      propertyPath: Cambio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3213640515183462576, guid: 22dde72a16bb5004baac5d88ee1edbfa, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 2411954140641853433}
@@ -707,6 +711,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5487594282122055, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 5487594282122055, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+      propertyPath: m_Name
+      value: STATUS
+      objectReference: {fileID: 0}
     - target: {fileID: 2411954141753074104, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -754,6 +766,10 @@ PrefabInstance:
     - target: {fileID: 2411954141753074117, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641925843613783422, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.683
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}

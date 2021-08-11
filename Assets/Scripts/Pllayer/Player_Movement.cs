@@ -4,6 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player_Movement : MonoBehaviour
 {
+    // EVENT
+    public delegate void DELDashingLeftTime(float left);
+    public event DELDashingLeftTime DashingLeftTime;
+
     public float speed;
     public float DashSpeed;
     public float NextDashingSeconds;
@@ -140,18 +144,26 @@ public class Player_Movement : MonoBehaviour
     }
 
     private float dashTimeBuffer;
+    [HideInInspector]
+    public float leftTime = 0;
     IEnumerator NextDashing()
     {
         NextDashingAvailable = false;
-
         for (dashTimeBuffer = NextDashingSeconds;dashTimeBuffer > 0; dashTimeBuffer -= Time.deltaTime)
         {
-            Debug.Log($"Time for next dashing: {dashTimeBuffer}");
+            //Calculate time
+            leftTime = float.Parse((1 - (dashTimeBuffer / NextDashingSeconds)).ToString("F2"));
+            // Report
+            DashingLeftTime(leftTime);
+
+            
+            //Debug.Log($"Time for next dashing: {leftTime}");
+
             yield return null;
             
         }
 
-        if(dashTimeBuffer < 0.5)
+        if(leftTime ==  1)
         {
             NextDashingAvailable = true;
 
