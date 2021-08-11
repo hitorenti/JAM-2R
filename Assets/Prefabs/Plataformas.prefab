@@ -200,5 +200,5 @@ MonoBehaviour:
   Animator: {fileID: 8419606298999875501}
   Collider: {fileID: 8419606298999875502}
   TiempoDeEspera: 3
-  TimeActivar: 0
-  Plataformas: 1
+  TimeActivar: 0.5
+  Plataformas: 0

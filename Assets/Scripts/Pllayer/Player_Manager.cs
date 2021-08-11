@@ -8,6 +8,7 @@ public class Player_Manager : MonoBehaviour
 
     private Animator anim;
     private Player_Jump pj;
+    public static int LLaves = 0;
 
     private void Awake()
     {
@@ -57,7 +58,7 @@ public class Player_Manager : MonoBehaviour
     /// Activate damage anim and take life
     /// </summary>
     /// <param name="damage">To substract</param>
-    private void Damage(int damage)
+    public void Damage(int damage)
     {
         if (this.GetComponent<SpriteRenderer>().flipX)
         {

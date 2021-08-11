@@ -12,8 +12,8 @@ public class Plataforma : MonoBehaviour
     Vector2 PuntoDeInicio;
     bool ContactoPlayer=false;
     bool Habilitar = false;
-    public float TimeActivar;
-    bool Activar;
+    float TimeActivar;
+    public bool Activar;
     public enum Cambio
     {
         Superior,Inferior
@@ -57,6 +57,7 @@ public class Plataforma : MonoBehaviour
                         Tiempo = TiempoDeEspera;
                         TimeActivar = 1f;
                         ContactoPlayer = false;
+                        Activar = false;
                         Habilitar = false;
                     }
                     else { Tiempo -= Time.deltaTime; }
@@ -90,6 +91,7 @@ public class Plataforma : MonoBehaviour
                         Tiempo = TiempoDeEspera;
                         TimeActivar = 1f;
                         ContactoPlayer = false;
+                        Activar = false;
                         Habilitar = false;
                     }
                     else { Tiempo -= Time.deltaTime; }
