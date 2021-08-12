@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Jump : MonoBehaviour
 {
-    public float RayDistance;
+    //public float RayDistance;
     public float JumpForce;
     [Tooltip("El tiempo entre cada salto se debe modificar antes de inciar el juego")]
     public float SecondsForNextJump;
