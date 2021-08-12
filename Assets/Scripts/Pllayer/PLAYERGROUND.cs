@@ -9,17 +9,18 @@ public class PLAYERGROUND : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag.Equals("GROUND"))
-        {
-            IsJump = false;
-        }
+        //if (collision.transform.tag.Equals("GROUND"))
+        //{
+        IsJump = false;
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.transform.tag.Equals("GROUND"))
-        {
-            IsJump = true;
-        }
+        //if (collision.transform.tag.Equals("GROUND"))
+        //{
+        IsJump = true;
+        //}
+
     }
 }
