@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8419606297746254418}
   m_Layer: 0
   m_Name: Plataformas
-  m_TagString: GROUND
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 8419606298999875503}
   m_Layer: 0
   m_Name: Desaparece
-  m_TagString: GROUND
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -339,8 +339,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RayDistance: 0.5
   JumpForce: 10
-  IsOverEnemy: 0
+  SecondsForNextJump: 2
   pg: {fileID: 1111647831117824183}
+  IsOverEnemy: 0
 --- !u!114 &2411954141753074109
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,10 @@ public class Player_Jump : MonoBehaviour
 {
     public float RayDistance;
     public float JumpForce;
+    [Tooltip("El tiempo entre cada salto se debe modificar antes de inciar el juego")]
+    public float SecondsForNextJump;
+    public PLAYERGROUND pg;
+
 
     private Rigidbody2D rb2d;
     private Animator anim;
@@ -14,7 +18,7 @@ public class Player_Jump : MonoBehaviour
     [HideInInspector]
     public bool IsOverEnemy;
 
-    public PLAYERGROUND pg;
+    private bool AvailableJump = true; // Its true for start
 
     private void Awake()
     {
@@ -53,7 +57,18 @@ public class Player_Jump : MonoBehaviour
         // For 2 different keys usage
         if (Input.GetAxis("Vertical")>0 && !pg.IsJump)
         {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, JumpForce);
+            if (AvailableJump)
+            {
+                rb2d.velocity = new Vector2(rb2d.velocity.x, JumpForce);
+                AvailableJump = false;
+                StartCoroutine(NextJump());
+            }
         }
+    }
+
+    private IEnumerator NextJump()
+    {
+        yield return new WaitForSeconds(SecondsForNextJump);
+        AvailableJump = true;
     }
 }
