@@ -27,7 +27,7 @@ public class PuasControl : MonoBehaviour
             }
         }
 
-        RaycastHit2D Izq = Physics2D.Raycast(transform.position - ControlRayCastDer, Vector2.down, DistanciaIzq);
+        RaycastHit2D Izq = Physics2D.Raycast(transform.position - ControlRayCastIzq, Vector2.down, DistanciaIzq);
         Debug.DrawRay(transform.position - ControlRayCastIzq, Vector2.down * DistanciaIzq, Color.yellow);
         if (Izq.collider != null)
         {
