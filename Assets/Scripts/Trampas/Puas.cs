@@ -2,7 +2,14 @@
 
 public class Puas : MonoBehaviour
 {
-    public Player_Manager DamageAlPlayer;
+    private Player_Manager DamageAlPlayer;
+
+    private void Awake()
+    {
+        // Obtener la referencia del jugador con el tag "PLAYER" paar evitar colocarla desde
+        // el inspector
+        DamageAlPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Manager>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

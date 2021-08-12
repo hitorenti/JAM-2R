@@ -49,7 +49,7 @@ public class Player_Jump : MonoBehaviour
 
         //    }
         //}
-        Debug.Log(pg.IsJump);
+       
         // For 2 different keys usage
         if (Input.GetAxis("Vertical")>0 && !pg.IsJump)
         {
