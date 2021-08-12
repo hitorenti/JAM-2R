@@ -23,7 +23,7 @@ public class Player_RPG_Movment : MonoBehaviour
     {
         Vector3 Dir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        if(Input.GetAxisRaw("Horizontal") > 0)
+        if(Input.GetKey(KeyCode.D))
         {
             AnimationDir = 2;
             this.transform.position += Dir * speed;
@@ -31,20 +31,19 @@ public class Player_RPG_Movment : MonoBehaviour
 
 
         }
-        else if(Input.GetAxisRaw("Horizontal") < 0)
+        else if(Input.GetKey(KeyCode.A))
         {
             AnimationDir = 2;
             this.transform.position += Dir * speed;
             this.GetComponent<SpriteRenderer>().flipX = true;
 
-        }else if(Input.GetAxisRaw("Vertical") > 0)
+        }
+        else if(Input.GetKey(KeyCode.W))
         {
             AnimationDir = 3;
-
             this.transform.position += Dir * speed;
-
         }
-        else if (Input.GetAxisRaw("Vertical") < 0)
+        else if (Input.GetKey(KeyCode.S))
         {
             AnimationDir = 1;
 

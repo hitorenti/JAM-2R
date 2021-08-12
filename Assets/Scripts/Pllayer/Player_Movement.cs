@@ -108,7 +108,7 @@ public class Player_Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
 
-            if (NextDashingAvailable && XDir != 0)
+            if (NextDashingAvailable && XDir != 0 && !dashing)
             {
                 // Dash
                 dashing = true;
