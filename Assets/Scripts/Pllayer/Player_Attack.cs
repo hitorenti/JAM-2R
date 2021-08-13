@@ -71,8 +71,19 @@ public class Player_Attack : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Vector3 direction;
         Gizmos.color = Color.blue;
-        Vector3 direction = this.transform.TransformDirection(Vector3.right) * RayAttackDistance;
+        if (this.GetComponent<SpriteRenderer>().flipX)
+        {
+             direction = this.transform.TransformDirection(Vector3.left) * RayAttackDistance;
+
+        }
+        else
+        {
+             direction = this.transform.TransformDirection(Vector3.right) * RayAttackDistance;
+
+        }
+
         Gizmos.DrawRay(this.transform.position, direction);
     }
 }

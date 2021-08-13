@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy_Damage : MonoBehaviour
@@ -27,15 +25,16 @@ public class Enemy_Damage : MonoBehaviour
         Life -= d;
 
         //? has life?
-        if(Life > 0)
+        if (Life == 0)
         {
-            //! Substract life
-            float perc = (100/BufferLife)*Life;
-            hb.ChangePercentage(perc);
+            hb.ChangePercentage(0);
+            Death();
         }
         else
         {
-            Death();
+            //! Substract life
+            float perc = (100 / BufferLife) * Life;
+            hb.ChangePercentage(perc);
         }
     }
 
