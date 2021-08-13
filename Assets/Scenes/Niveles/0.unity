@@ -97724,10 +97724,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: spikes_trap (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1206431414046595146, guid: 9632295d208a48340a286f966b49a528, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1206431414046595148, guid: 9632295d208a48340a286f966b49a528, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -109366,17 +109362,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3254142685112174081, guid: c32ae4247ac34b649a650a8d188c6cfd, type: 3}
   m_PrefabInstance: {fileID: 1690154891}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1700871675 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2411954141753074109, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
-  m_PrefabInstance: {fileID: 1808939079}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619395994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69d5fa93697cd714fb42dc6bca89ea11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1714251964
 GameObject:
   m_ObjectHideFlags: 0
@@ -109891,7 +109876,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7787356, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -110840,17 +110825,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1209536981}
     m_Modifications:
-    - target: {fileID: 1206431413808438929, guid: 9632295d208a48340a286f966b49a528, type: 3}
-      propertyPath: DamageAlPlayer
-      value: 
-      objectReference: {fileID: 1700871675}
     - target: {fileID: 1206431414046595143, guid: 9632295d208a48340a286f966b49a528, type: 3}
       propertyPath: m_Name
       value: spikes_trap
-      objectReference: {fileID: 0}
-    - target: {fileID: 1206431414046595146, guid: 9632295d208a48340a286f966b49a528, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1206431414046595148, guid: 9632295d208a48340a286f966b49a528, type: 3}
       propertyPath: m_RootOrder

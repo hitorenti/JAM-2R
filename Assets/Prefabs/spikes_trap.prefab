@@ -70,7 +70,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec386af0db5c7d41b45ae60a467968f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageAlPlayer: {fileID: 0}
 --- !u!1 &1206431414046595143
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +85,7 @@ GameObject:
   - component: {fileID: 1206431414046595144}
   m_Layer: 6
   m_Name: spikes_trap
-  m_TagString: Untagged
+  m_TagString: GROUND
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,7 +199,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: dc72c9f8a06a9774b869733e1b7876dd, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

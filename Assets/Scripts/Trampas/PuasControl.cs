@@ -23,7 +23,6 @@ public class PuasControl : MonoBehaviour
             {
                 Rb2D.gravityScale = 2;
                 Rb2D.bodyType = 0;
-                Debug.Log("hola");
             }
         }
 
@@ -35,8 +34,16 @@ public class PuasControl : MonoBehaviour
             {
                 Rb2D.gravityScale = 2;
                 Rb2D.bodyType = 0;
-                Debug.Log("hola");
             }
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("GROUND"))
+        {
+            Rb2D.gravityScale = 1000;
+            Rb2D.velocity = Vector2.zero;
+            Debug.Log("hola");
         }
     }
 }
