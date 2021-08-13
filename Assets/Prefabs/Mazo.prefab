@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1151945659578626979}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mazo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 1151945660030512012}
   - component: {fileID: 1151945660030512014}
   - component: {fileID: 1151945660030512015}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mazo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

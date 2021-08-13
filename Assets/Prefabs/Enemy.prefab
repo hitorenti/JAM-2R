@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3213640515183462578}
   - component: {fileID: 3213640515183462577}
   - component: {fileID: 3213640515183462576}
-  m_Layer: 14
+  m_Layer: 9
   m_Name: Enemigos
   m_TagString: ENEMY
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ MonoBehaviour:
   Rb2D: {fileID: 3213640515183462577}
   Player: {fileID: 0}
   Box: {fileID: 3213640515183462578}
-  Cambio: 5
+  Cambio: 3
   RangoDeVision: 3
   TiempoDeEspera: 3
   Bomba: {fileID: 5638292221489407842, guid: 71cbe4257110c324c95d0f08886f1ff2, type: 3}
@@ -207,7 +207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3213640515615878731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: -3, z: 0}
+  m_LocalPosition: {x: -8.982948, y: -3.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3213640516071570214}
@@ -372,7 +372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3213640516270287559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.7, y: -3, z: 0}
+  m_LocalPosition: {x: 11.017055, y: -3.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3213640516071570214}

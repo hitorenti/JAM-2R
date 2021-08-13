@@ -20,6 +20,12 @@ public class Player_Jump : MonoBehaviour
 
     private bool AvailableJump = true; // Its true for start
 
+    // para el salto y doble con presion de boton
+    // Salto
+    float Fall = 0.5f;
+    float Low = 1f;
+    bool CamDoubleJump;
+    public bool DobleSalto;
     private void Awake()
     {
         rb2d = this.gameObject.GetComponent<Rigidbody2D>();
@@ -30,6 +36,15 @@ public class Player_Jump : MonoBehaviour
     {
         //! Animation
         anim.SetBool("jump", pg.IsJump);
+
+        if (Input.GetKey("space"))
+        {
+            if (!pg.IsJump) { rb2d.velocity = new Vector2(rb2d.velocity.x, JumpForce); CamDoubleJump = true; }
+            else { if (DobleSalto) { if (Input.GetKeyDown(KeyCode.Space)) { if (CamDoubleJump) {  rb2d.velocity = new Vector2(rb2d.velocity.x, JumpForce); CamDoubleJump = false; } } } }
+            
+        }
+        if (rb2d.velocity.y < 0) { rb2d.velocity += Vector2.up * Physics2D.gravity.y * (Fall) * Time.deltaTime; }
+        if (rb2d.velocity.y > 0 && !Input.GetKey("space")) { rb2d.velocity += Vector2.up * Physics2D.gravity.y * (Low) * Time.deltaTime; }
     }
 
     private void FixedUpdate()

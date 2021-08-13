@@ -19,6 +19,7 @@ public class Explosion : MonoBehaviour
         Animator.SetBool("Explosion_Aire", false);
         Activa = false;
         Rb2D.AddForce(new Vector2(200, 200));
+        Physics2D.IgnoreLayerCollision(6, 9);
     }
     private void Update()
     {

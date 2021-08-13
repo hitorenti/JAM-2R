@@ -37,6 +37,10 @@ public class Enemy : MonoBehaviour
     Vector2 PuntoDeInicio;
     float TiempoDeSaltoSlime;
     bool suelo;
+    // mejorar posiciones
+    float PosX;
+    float PosY;
+    float PosXPlayer;
     private void Start()
     {
         ColorRango = Color.green;
@@ -54,7 +58,7 @@ public class Enemy : MonoBehaviour
                 Rb2D.gravityScale = 1;
                 Box.offset = new Vector2(0.07384136f, -0.07636565f);
                 Box.size= new Vector2(0.6687278f, 0.9311044f);
-                if (Vector2.Distance(transform.position, Player.transform.position) < RangoDeVision||Input.GetKey("u"))
+                if (Vector2.Distance(transform.position, Player.transform.position) < RangoDeVision)
                 {
                     if (Player.transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
                     if(TiempoDeAtaque < 0)
@@ -103,7 +107,7 @@ public class Enemy : MonoBehaviour
                 Box.size = new Vector2(0.5402526f, 0.928192f);
                 Rb2D.gravityScale = 1;
                 Animator.SetBool("GloblinA_Idle", true);
-                if (Vector2.Distance(transform.position, Player.transform.position) < RangoDeVision || Input.GetKey("u"))
+                if (Vector2.Distance(transform.position, Player.transform.position) < RangoDeVision )
                 {
                     if (Player.transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
                     if (TiempoDeAtaque < 0)
@@ -120,9 +124,11 @@ public class Enemy : MonoBehaviour
                 {
                     TiempoDeAtaque -= Time.deltaTime;
                     Animator.SetBool("GloblinA_Movimiento", true);
-                    transform.position = Vector2.MoveTowards(transform.position, Punto[i].transform.position, SpeedFly * Time.deltaTime);
+                    PosX = Punto[i].transform.position.x;
+                    PosY = transform.position.y;
+                    transform.position = Vector2.MoveTowards(transform.position, new Vector2(PosX, PosY), SpeedFly * Time.deltaTime);
                     if (Punto[i].transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
-                    if (Vector2.Distance(transform.position, Punto[i].transform.position) < 0.1f)
+                    if (Vector2.Distance(transform.position, new Vector2(PosX, PosY)) < 0.1f)
                     {
 
                         if (TiempoFly < 0)
@@ -148,9 +154,11 @@ public class Enemy : MonoBehaviour
                 if (!Empuje.SaltoActivo)
                 {
                     Empujes.SetActive(true);
-                    transform.position = Vector2.MoveTowards(transform.position, Punto[i].transform.position, SpeedFly * Time.deltaTime);
-                    if (Punto[i].transform.position.x < transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
-                    if (Vector2.Distance(transform.position, Punto[i].transform.position) < 0.1f)
+                    PosX = Punto[i].transform.position.x;
+                    PosY = transform.position.y;
+                    transform.position = Vector2.MoveTowards(transform.position, new Vector2(PosX,PosY), SpeedFly * Time.deltaTime);
+                    if (Punto[i].transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
+                    if (Vector2.Distance(transform.position, new Vector2(PosX, PosY)) < 0.1f)
                     {
 
                         if (TiempoFly < 0)
@@ -189,8 +197,10 @@ public class Enemy : MonoBehaviour
                 if (Vector2.Distance(transform.position,Player.transform.position)< RangoDeVision)
                 {
                     if (Player.transform.position.x < transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
-                    Animator.SetBool("Slime_Movimiento",true); 
-                    transform.position =Vector2.MoveTowards(transform.position,Player.transform.position,SpeedFly*Time.deltaTime);
+                    Animator.SetBool("Slime_Movimiento",true);
+                    PosXPlayer = Player.transform.position.x;
+                    PosY = transform.position.y;
+                    transform.position =Vector2.MoveTowards(transform.position,new Vector2(PosXPlayer, PosY),SpeedFly*Time.deltaTime);
                     if (TiempoDeSaltoSlime < 0 && suelo) { Rb2D.velocity = new Vector2(0, 0.3f); TiempoDeSaltoSlime = 0.17f; } else { TiempoDeSaltoSlime -= Time.deltaTime; }
                 }
                 else
@@ -211,9 +221,11 @@ public class Enemy : MonoBehaviour
                 Box.size = new Vector2(0.8088621f, 0.3943565f);
                 Rb2D.gravityScale = 1;
                 Animator.SetBool("Worm", true);
-                transform.position = Vector2.MoveTowards(transform.position, Punto[i].transform.position, SpeedFly * Time.deltaTime);
+                PosX = Punto[i].transform.position.x;
+                PosY = transform.position.y;
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(PosX, PosY), SpeedFly * Time.deltaTime);
                 if (Punto[i].transform.position.x < transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
-                if (Vector2.Distance(transform.position, Punto[i].transform.position) < 0.1f)
+                if (Vector2.Distance(transform.position, new Vector2(PosX, PosY)) < 0.1f)
                 {
 
                     if (TiempoFly < 0)

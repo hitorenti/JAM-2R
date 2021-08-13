@@ -21,7 +21,7 @@ public class PuasControl : MonoBehaviour
         {
             if (Der.collider.gameObject.CompareTag("Player"))
             {
-                Rb2D.gravityScale = 10;
+                Rb2D.gravityScale = 2;
                 Rb2D.bodyType = 0;
                 Debug.Log("hola");
             }
@@ -33,7 +33,7 @@ public class PuasControl : MonoBehaviour
         {
             if (Izq.collider.CompareTag("Player"))
             {
-                Rb2D.gravityScale = 10;
+                Rb2D.gravityScale = 2;
                 Rb2D.bodyType = 0;
                 Debug.Log("hola");
             }
