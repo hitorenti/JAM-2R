@@ -11,6 +11,7 @@ public class Player_Manager : MonoBehaviour
     private Animator anim;
     private Player_Jump pj;
     public static int LLaves = 0;
+    public HealthBar hb;
 
     private void Awake()
     {
@@ -45,7 +46,6 @@ public class Player_Manager : MonoBehaviour
             if (!pj.IsOverEnemy)
             {
                 Damage(0,false);
-                //Death();
             }
 
         }
@@ -82,6 +82,7 @@ public class Player_Manager : MonoBehaviour
                 }
             }
             anim.SetBool("damage", true);
+            hb.ChangePercentage((100/PlayerLife)*_playerLife);
         }
         else
         {

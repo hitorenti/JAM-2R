@@ -13,7 +13,6 @@ public class HealthBar : MonoBehaviour
     {
         if(per < 100 && per > 0)
         {
-            Debug.Log(per / 100);
             indicator.localScale = new Vector3(per/100,indicator.localScale.y, indicator.localScale.z);
         }
         else if( per < 0 || per == 0)
