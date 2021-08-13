@@ -4,6 +4,7 @@ public class Enemy_Damage : MonoBehaviour
 {
     public int Life;
     public HealthBar hb;
+    public Animator anim;
 
     private int BufferLife; // Total life stored
 
@@ -25,7 +26,7 @@ public class Enemy_Damage : MonoBehaviour
         Life -= d;
 
         //? has life?
-        if (Life == 0)
+        if (Life <= 0)
         {
             hb.ChangePercentage(0);
             Death();
@@ -40,6 +41,31 @@ public class Enemy_Damage : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log("C muere");
+        switch (this.GetComponent<Enemy>().Cambio)
+        {
+            case Enemy.Enemigos.bomberGoblin:
+                anim.SetBool("DEATH_BGOBLIN", true);
+                break;
+            case Enemy.Enemigos.Fly:
+                anim.SetBool("DEATH_FLY", true);
+                break;
+            case Enemy.Enemigos.Globin:
+                anim.SetBool("DEATH_GOBLIN", true);
+                break;
+            case Enemy.Enemigos.Mushroon:
+                anim.SetBool("DEATH_MUSH", true);
+                break;
+            case Enemy.Enemigos.Slime:
+                anim.SetBool("DEATH_SLIME", true);
+                break;
+            case Enemy.Enemigos.Worm:
+                anim.SetBool("DEATH_WORM", true);
+                break;
+        }
+    }
+
+    public void EndDeath()
+    {
+        Destroy(this.transform.parent.gameObject);
     }
 }

@@ -6,6 +6,7 @@ public class Player_Attack : MonoBehaviour
 {
     private Animator anim;
     private bool attack;
+    public int DamageToEnemy;
 
     public float RayAttackDistance;
     public KeyCode AttackKey;
@@ -39,7 +40,7 @@ public class Player_Attack : MonoBehaviour
         if (Input.GetKeyDown(AttackKey))
         {
             attack = true;
-            Attack(hit.collider,1);
+            Attack(hit.collider, DamageToEnemy);
         }
         else
         {
@@ -64,7 +65,16 @@ public class Player_Attack : MonoBehaviour
         {
             if (hit.tag.Equals("ENEMY"))
             {
-                hit.GetComponent<Enemy_Damage>().Damage(damage);
+                if(hit.name == "Empuje")
+                {
+                    hit.transform.parent.GetComponent<Enemy_Damage>().Damage(damage);
+
+                }
+                else
+                {
+                    hit.GetComponent<Enemy_Damage>().Damage(damage);
+
+                }
             }
         }
     }

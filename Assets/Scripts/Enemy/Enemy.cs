@@ -13,7 +13,12 @@ public class Enemy : MonoBehaviour
     // clases de enemigos
     public enum Enemigos
     {
-        bomberGoblin,Fly,Globin,Mushroon,Slime,Worm
+        bomberGoblin,
+        Fly,
+        Globin,
+        Mushroon,
+        Slime,
+        Worm
     }
     public Enemigos Cambio;
     // Variables

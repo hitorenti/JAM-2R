@@ -58,22 +58,22 @@ TextureImporter:
     second: slime_spritesheet_17
   - first:
       213: 6461772780688292466
-    second: slime_spritesheet_18
+    second: slime_death_0
   - first:
       213: -5435708396011010926
-    second: slime_spritesheet_19
+    second: slime_death_1
   - first:
       213: -4638871924367489754
-    second: slime_spritesheet_20
+    second: slime_death_2
   - first:
       213: -8767064303162457365
-    second: slime_spritesheet_21
+    second: slime_death_3
   - first:
       213: -1803195728042607551
-    second: slime_spritesheet_22
+    second: slime_death_4
   - first:
       213: -8277382326411502443
-    second: slime_spritesheet_23
+    second: slime_death_5
   - first:
       213: 4250956038776025391
     second: slime_spritesheet_24
@@ -223,7 +223,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slime_spritesheet_18
+      name: slime_death_0
       rect:
         serializedVersion: 2
         x: 0
@@ -244,7 +244,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slime_spritesheet_19
+      name: slime_death_1
       rect:
         serializedVersion: 2
         x: 16
@@ -265,7 +265,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slime_spritesheet_20
+      name: slime_death_2
       rect:
         serializedVersion: 2
         x: 32
@@ -286,7 +286,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slime_spritesheet_21
+      name: slime_death_3
       rect:
         serializedVersion: 2
         x: 48
@@ -307,7 +307,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slime_spritesheet_22
+      name: slime_death_4
       rect:
         serializedVersion: 2
         x: 64
@@ -328,7 +328,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slime_spritesheet_23
+      name: slime_death_5
       rect:
         serializedVersion: 2
         x: 80

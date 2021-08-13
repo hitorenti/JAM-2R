@@ -16,6 +16,7 @@ public class Player_Movement : MonoBehaviour
     public float NextDashingSeconds;
     public float DashDurationSeconds;
     public float SecondsForDestroyEnemy;
+    public Player_Attack pa;
 
     private Rigidbody2D rb2d;
     private Animator anim;
@@ -206,7 +207,16 @@ public class Player_Movement : MonoBehaviour
     {
         yield return new WaitForSeconds(SecondsForDestroyEnemy);
         // Destroy enemy
-        Destroy(enemy.gameObject);
+        if (enemy.name == "Empuje")
+        {
+            enemy.transform.parent.GetComponent<Enemy_Damage>().Damage(pa.DamageToEnemy+2);
+
+        }
+        else
+        {
+            enemy.GetComponent<Enemy_Damage>().Damage(pa.DamageToEnemy+2);
+
+        }
         // Set star layer
         this.GetComponent<SpriteRenderer>().sortingOrder = layer;
 

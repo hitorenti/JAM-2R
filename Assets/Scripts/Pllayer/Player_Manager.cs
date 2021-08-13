@@ -54,6 +54,8 @@ public class Player_Manager : MonoBehaviour
     public void EndDamageAnimation()
     {
         anim.SetBool("damage", false);
+        hb.ChangePercentage((100 / PlayerLife) * _playerLife);
+
 
     }
 
@@ -82,7 +84,6 @@ public class Player_Manager : MonoBehaviour
                 }
             }
             anim.SetBool("damage", true);
-            hb.ChangePercentage((100/PlayerLife)*_playerLife);
         }
         else
         {
