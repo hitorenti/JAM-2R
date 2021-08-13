@@ -28,6 +28,7 @@ public class Fauna : MonoBehaviour
         Tiempo = TiempoDeEspera;
         Physics2D.IgnoreLayerCollision(3, 7);
         Physics2D.IgnoreLayerCollision(6, 7);
+        Physics2D.IgnoreLayerCollision(9, 7);
     }
     private void Update()
     {
