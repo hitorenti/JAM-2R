@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player_Jump : MonoBehaviour
 {
-    //public float RayDistance;
     public float JumpForce;
     [Tooltip("El tiempo entre cada salto se debe modificar antes de inciar el juego")]
     public float SecondsForNextJump;
@@ -13,8 +12,6 @@ public class Player_Jump : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private Animator anim;
-    //[HideInInspector]
-    //public bool IsJump;
     [HideInInspector]
     public bool IsOverEnemy;
 
@@ -49,25 +46,6 @@ public class Player_Jump : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // ! Draw ray for ENEMY DETECTION
-        //RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, RayDistance);
-
-        //IsJump = true;
-
-        ////? Is hit colliding?
-        //if (hit.collider != null)
-        //{
-        //    if (hit.collider.tag.Equals("ENEMY"))
-        //    {
-        //        //IsJump = false;
-        //        IsOverEnemy = true;
-        //    }
-        //    else
-        //    {
-        //        IsOverEnemy = false;
-
-        //    }
-        //}
        
         // For 2 different keys usage
         if (Input.GetAxis("Vertical")>0 && !pg.IsJump)

@@ -97744,7 +97744,7 @@ GameObject:
   - component: {fileID: 1496700683}
   m_Layer: 8
   m_Name: Suelo
-  m_TagString: GROUND
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109658,14 +109658,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2411954141753074108, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
-      propertyPath: JumpForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2411954141753074108, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
-      propertyPath: DobleSalto
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2411954141753074108, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
       propertyPath: RayDistance
       value: 0.6
       objectReference: {fileID: 0}
@@ -109778,7 +109770,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7790055, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

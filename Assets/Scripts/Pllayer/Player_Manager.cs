@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player_Manager : MonoBehaviour
 {
     public float PushForce;
+    public int PlayerLife;
+    private int _playerLife; // Buffer
 
     private Animator anim;
     private Player_Jump pj;
@@ -14,6 +16,7 @@ public class Player_Manager : MonoBehaviour
     {
         anim = this.gameObject.GetComponent<Animator>();
         pj = this.gameObject.GetComponent<Player_Jump>();
+        _playerLife = PlayerLife;
     }
 
     public void EndDeathAnimation()
@@ -61,20 +64,30 @@ public class Player_Manager : MonoBehaviour
     /// <param name="UpDamage">Damage from Up?</param>
     public void Damage(int damage,bool UpDamage)
     {
-        if (!UpDamage)
+        _playerLife -= damage;
+
+        if(_playerLife > 0)
         {
-            if (this.GetComponent<SpriteRenderer>().flipX)
+            if (!UpDamage)
             {
-                this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x + PushForce, 0.215f), this.transform.position.y);
+                if (this.GetComponent<SpriteRenderer>().flipX)
+                {
+                    this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x + PushForce, 0.215f), this.transform.position.y);
 
-            }
-            else
-            {
-                this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x - PushForce, 0.215f), this.transform.position.y);
+                }
+                else
+                {
+                    this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x - PushForce, 0.215f), this.transform.position.y);
 
+                }
             }
+            anim.SetBool("damage", true);
         }
-        anim.SetBool("damage", true);
+        else
+        {
+            Death();
+        }
+
 
     }
 
