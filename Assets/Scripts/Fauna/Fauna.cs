@@ -15,6 +15,9 @@ public class Fauna : MonoBehaviour
     public float RangoDevision;
     public GameObject Player;
     public bool VerAlPlayer = false;
+
+    float PuntoY;
+    float Pos;
     public enum Animales
     {
         Conejo,Ave
@@ -23,7 +26,8 @@ public class Fauna : MonoBehaviour
     private void Start()
     {
         Tiempo = TiempoDeEspera;
-        Physics2D.IgnoreLayerCollision(0, 7);
+        Physics2D.IgnoreLayerCollision(3, 7);
+        Physics2D.IgnoreLayerCollision(6, 7);
     }
     private void Update()
     {
@@ -32,11 +36,13 @@ public class Fauna : MonoBehaviour
             case Animales.Conejo:
                 if (VerAlPlayer)
                 {
-                    Animator.SetBool("ConejoM", false);
                     if (Posiciones[i].transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
-                    transform.position = Vector2.MoveTowards(transform.position, Posiciones[i].transform.position, Speed*Time.deltaTime);
+                    PuntoY = transform.position.y;
+                    Pos = Posiciones[i].transform.position.x;
+                    transform.position = Vector2.MoveTowards(transform.position, new Vector2(Pos, PuntoY), Speed * Time.deltaTime);
                     if (Vector2.Distance(Player.transform.position, transform.position) < RangoDevision)
                     {
+                        Animator.SetBool("ConejoM", true);
                         if (Vector2.Distance(transform.position, Posiciones[i].transform.position) < 0.1f)
                         {
                             if (Tiempo < 0)
@@ -49,12 +55,17 @@ public class Fauna : MonoBehaviour
                             else { Tiempo -= Time.deltaTime; Animator.SetBool("ConejoM", false); }
                         }
                     }
+                    if(Vector2.Distance(transform.position, Posiciones[i].transform.position) < 0.1f && transform.position.x == Pos) 
+                    { Animator.SetBool("ConejoM", false); }
                 }
                 else
                 {
                     Animator.SetBool("ConejoM", true);
+
                     if (Posiciones[i].transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
-                    transform.position = Vector2.MoveTowards(transform.position, Posiciones[i].transform.position, Speed * Time.deltaTime);
+                    PuntoY = transform.position.y;
+                    Pos = Posiciones[i].transform.position.x;
+                    transform.position = Vector2.MoveTowards(transform.position,new Vector2(Pos,PuntoY), Speed * Time.deltaTime);
                     if (Vector2.Distance(transform.position, Posiciones[i].transform.position) < 0.1f)
                     {
                         if (Tiempo < 0)
@@ -63,48 +74,56 @@ public class Fauna : MonoBehaviour
                             i++;
                             Tiempo = TiempoDeEspera;
                             if (i > 1) { i = 0; }
+
                         }
-                        else { Tiempo -= Time.deltaTime; Animator.SetBool("ConejoM",false); }
+                        else { Tiempo -= Time.deltaTime; Animator.SetBool("ConejoM",false); Rb2D.velocity = new Vector2(0, Rb2D.velocity.y); }
                     }
                 }
                 break;
             case Animales.Ave:
                 if (VerAlPlayer)
                 {
+                    Rb2D.gravityScale = 0;
                     Animator.SetBool("Ave", true);
                     if (Posiciones[i].transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
                     transform.position = Vector2.MoveTowards(transform.position, Posiciones[i].transform.position, Speed * Time.deltaTime);
                     if (Vector2.Distance(Player.transform.position, transform.position) < RangoDevision)
                     {
+                        Animator.SetBool("AveM", true);
                         if (Vector2.Distance(transform.position, Posiciones[i].transform.position) < 0.1f)
                         {
                             if (Tiempo < 0)
                             {
+                                Rb2D.gravityScale = 0;
                                 Animator.SetBool("AveM", true);
                                 i++;
                                 Tiempo = TiempoDeEspera;
                                 if (i > 1) { i = 0; }
                             }
-                            else { Tiempo -= Time.deltaTime; Animator.SetBool("AveM", false); }
+                            else { Tiempo -= Time.deltaTime; Animator.SetBool("AveM", false); Rb2D.gravityScale = 1; }
                         }
                     }
-                    
+                    if (Vector2.Distance(transform.position, Posiciones[i].transform.position) < 0.1f)
+                    { Animator.SetBool("AveM", false); }
                 }
                 else
                 {
-                    Animator.SetBool("ConejoM", true);
+                    Rb2D.gravityScale = 0;
+                    Animator.SetBool("Ave", true);
+                    Animator.SetBool("AveM", true);
                     if (Posiciones[i].transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
                     transform.position = Vector2.MoveTowards(transform.position, Posiciones[i].transform.position, Speed * Time.deltaTime);
                     if (Vector2.Distance(transform.position, Posiciones[i].transform.position) < 0.1f)
                     {
                         if (Tiempo < 0)
                         {
-                            Animator.SetBool("ConejoM", true);
+                            Rb2D.gravityScale = 0 ;
+                            Animator.SetBool("AveM", true);
                             i++;
                             Tiempo = TiempoDeEspera;
                             if (i > 1) { i = 0; }
                         }
-                        else { Tiempo -= Time.deltaTime; Animator.SetBool("ConejoM", false); }
+                        else { Tiempo -= Time.deltaTime; Animator.SetBool("AveM", false);Rb2D.gravityScale = 1; }
                     }
                 }
                 break;
