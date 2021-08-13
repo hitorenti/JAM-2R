@@ -7,20 +7,15 @@ public class PLAYERGROUND : MonoBehaviour
     [HideInInspector]
     public bool IsJump = true;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        //if (collision.transform.tag.Equals("GROUND"))
-        //{
         IsJump = false;
-        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //if (collision.transform.tag.Equals("GROUND"))
-        //{
+
         IsJump = true;
-        //}
 
     }
 }

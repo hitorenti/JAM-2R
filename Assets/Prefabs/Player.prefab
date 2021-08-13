@@ -170,6 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80fc53ff0c89de43af87ce0821e36f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RayAttackDistance: 0.98
+  AttackKey: 106
 --- !u!114 &2411954141753074107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +205,7 @@ MonoBehaviour:
   SecondsForNextJump: 0
   pg: {fileID: 1111647831117824183}
   IsOverEnemy: 0
+  DobleSalto: 0
 --- !u!114 &2411954141753074109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PushForce: 7
+  PlayerLife: 50
 --- !u!1 &4731615190027333772
 GameObject:
   m_ObjectHideFlags: 0
