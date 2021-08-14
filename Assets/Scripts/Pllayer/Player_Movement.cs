@@ -17,6 +17,7 @@ public class Player_Movement : MonoBehaviour
     public float DashDurationSeconds;
     public float SecondsForDestroyEnemy;
     public Player_Attack pa;
+    public BoxCollider2D AtackColl;
 
     private Rigidbody2D rb2d;
     private Animator anim;
@@ -38,12 +39,15 @@ public class Player_Movement : MonoBehaviour
             {
                 anim.SetBool("dashing", true);
                 this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                AtackColl.offset = new Vector2(Mathf.Abs(AtackColl.offset.x), AtackColl.offset.x);
 
-            }else if(rb2d.velocity.x < 0)
+
+            }
+            else if(rb2d.velocity.x < 0)
             {
                 anim.SetBool("dashing", true);
                 this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-
+                AtackColl.offset = new Vector2(-AtackColl.offset.x, AtackColl.offset.x);
             }
         }
         else
