@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -4099418257374492983, guid: 85676617c44041947aa6a91787f458d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -223,6 +223,7 @@ MonoBehaviour:
   PushForce: 7
   PlayerLife: 50
   hb: {fileID: 0}
+  RespawnPosition: {fileID: 0}
 --- !u!1 &4731615190027333772
 GameObject:
   m_ObjectHideFlags: 0

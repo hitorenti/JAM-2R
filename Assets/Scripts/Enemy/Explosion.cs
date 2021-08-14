@@ -37,6 +37,8 @@ public class Explosion : MonoBehaviour
         gameObject.transform.localEulerAngles = Rotacion;
         Activa = true;
     }
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -44,6 +46,10 @@ public class Explosion : MonoBehaviour
             Rb2D.freezeRotation = true;
             gameObject.transform.localEulerAngles = Rotacion;
             Activa = true;
+            if(collision.gameObject.GetComponent<Player_Manager>() != null)
+            {
+                collision.gameObject.GetComponent<Player_Manager>().Damage(2, true,0);
+            }
         }
         if (collision.gameObject.CompareTag("GROUND"))
         {
@@ -54,7 +60,7 @@ public class Explosion : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("GROUND"))
         {
-            Suelo = false ;
+            Suelo = false;
         }
     }
 }

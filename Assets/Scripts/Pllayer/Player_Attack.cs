@@ -27,13 +27,18 @@ public class Player_Attack : MonoBehaviour
     {
         RaycastHit2D hit;
 
+        Vector3 origin = this.transform.position;
+        origin.x -= 0.1f;
+
         if (this.GetComponent<SpriteRenderer>().flipX)
         {
-            hit = Physics2D.Raycast(this.transform.position, Vector2.left, RayAttackDistance);
+
+            hit = Physics2D.Raycast(origin, Vector2.left, RayAttackDistance);
+
         }
         else
         {
-            hit = Physics2D.Raycast(this.transform.position, Vector2.right, RayAttackDistance);
+            hit = Physics2D.Raycast(origin, Vector2.right, RayAttackDistance);
         }
         
         
@@ -73,7 +78,6 @@ public class Player_Attack : MonoBehaviour
                 else
                 {
                     hit.GetComponent<Enemy_Damage>().Damage(damage);
-
                 }
             }
         }
@@ -94,6 +98,9 @@ public class Player_Attack : MonoBehaviour
 
         }
 
-        Gizmos.DrawRay(this.transform.position, direction);
+        Vector3 origin = this.transform.position;
+        origin.x -= 0.1f;
+
+        Gizmos.DrawRay(origin, direction);
     }
 }

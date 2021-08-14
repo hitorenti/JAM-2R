@@ -41,31 +41,54 @@ public class Enemy_Damage : MonoBehaviour
 
     private void Death()
     {
-        switch (this.GetComponent<Enemy>().Cambio)
+        if(this.GetComponent<Skeleton>() != null)
         {
-            case Enemy.Enemigos.bomberGoblin:
-                anim.SetBool("DEATH_BGOBLIN", true);
-                break;
-            case Enemy.Enemigos.Fly:
-                anim.SetBool("DEATH_FLY", true);
-                break;
-            case Enemy.Enemigos.Globin:
-                anim.SetBool("DEATH_GOBLIN", true);
-                break;
-            case Enemy.Enemigos.Mushroon:
-                anim.SetBool("DEATH_MUSH", true);
-                break;
-            case Enemy.Enemigos.Slime:
-                anim.SetBool("DEATH_SLIME", true);
-                break;
-            case Enemy.Enemigos.Worm:
-                anim.SetBool("DEATH_WORM", true);
-                break;
+            anim.SetBool("MuertePermanente",true);
         }
+        else if(this.GetComponent<SkeletoAdistancia>() != null)
+        {
+            anim.SetBool("MuertePermanente", true);
+
+        }
+        else
+        {
+            switch (this.GetComponent<Enemy>().Cambio)
+            {
+                case Enemy.Enemigos.bomberGoblin:
+                    anim.SetBool("DEATH_BGOBLIN", true);
+                    break;
+                case Enemy.Enemigos.Fly:
+                    anim.SetBool("DEATH_FLY", true);
+                    break;
+                case Enemy.Enemigos.Globin:
+                    anim.SetBool("DEATH_GOBLIN", true);
+                    break;
+                case Enemy.Enemigos.Mushroon:
+                    anim.SetBool("DEATH_MUSH", true);
+                    break;
+                case Enemy.Enemigos.Slime:
+                    anim.SetBool("DEATH_SLIME", true);
+                    break;
+                case Enemy.Enemigos.Worm:
+                    anim.SetBool("DEATH_WORM", true);
+                    break;
+            }
+
+        }
+
     }
 
-    public void EndDeath()
+    public void EndDeath(int IsSkeleton)
     {
-        Destroy(this.transform.parent.gameObject);
+        //? 1 = true, 0= false
+        if (IsSkeleton == 0)
+        {
+            Destroy(this.transform.parent.gameObject);
+
+        }
+        else
+        {
+            anim.StopPlayback();
+        }
     }
 }

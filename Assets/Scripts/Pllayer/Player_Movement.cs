@@ -141,8 +141,8 @@ public class Player_Movement : MonoBehaviour
                 Physics2D.IgnoreCollision(collision.collider, this.GetComponent<Collider2D>());
                 // OVER ENEMY
                 int initialLayer = this.GetComponent<SpriteRenderer>().sortingOrder;
-                this.GetComponent<SpriteRenderer>().sortingOrder = 90; 
-                StartCoroutine(WaitForDestroyEnemy(collision.gameObject, initialLayer));
+                this.GetComponent<SpriteRenderer>().sortingOrder = 90;
+                StartCoroutine(WaitForDestroyEnemy(collision.collider, initialLayer));
             }
         }
     }
@@ -203,7 +203,7 @@ public class Player_Movement : MonoBehaviour
 
     }
 
-    IEnumerator WaitForDestroyEnemy(GameObject enemy,int layer)
+    IEnumerator WaitForDestroyEnemy(Collider2D enemy,int layer)
     {
         yield return new WaitForSeconds(SecondsForDestroyEnemy);
         // Destroy enemy
@@ -219,6 +219,8 @@ public class Player_Movement : MonoBehaviour
         }
         // Set star layer
         this.GetComponent<SpriteRenderer>().sortingOrder = layer;
+        // Turn off ignore collision
+        Physics2D.IgnoreCollision(enemy, this.GetComponent<Collider2D>(),false);
 
     }
 }
