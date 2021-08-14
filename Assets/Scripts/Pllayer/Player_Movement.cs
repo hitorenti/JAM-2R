@@ -219,7 +219,7 @@ public class Player_Movement : MonoBehaviour
                 enemy.transform.parent.GetComponent<Enemy_Damage>().Damage(pa.DamageToEnemy + 2);
 
             }
-            else if (enemy.tag.Equals("ENEMY") && enemy.name != "bomb")
+            else if (enemy.tag.Equals("ENEMY") && enemy.name != "bomb" && enemy.name != "bala")
             {
                 enemy.GetComponent<Enemy_Damage>().Damage(pa.DamageToEnemy + 2);
 
