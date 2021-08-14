@@ -11,7 +11,13 @@ public class PuasControl : MonoBehaviour
     public Vector3 ControlRayCastDer;
     public float DistanciaIzq;
     public Vector3 ControlRayCastIzq;
-
+    public bool TrampaActiva=false;
+    bool ActivarRb2d=false;
+    float Tiempo;
+    private void Start()
+    {
+        Tiempo = 0.5f;
+    }
 
     public void Update()
     {
@@ -19,10 +25,11 @@ public class PuasControl : MonoBehaviour
         Debug.DrawRay(transform.position - ControlRayCastDer, Vector2.down*DistanciaDer, Color.yellow);
         if(Der.collider != null)
         {
-            if (Der.collider.gameObject.CompareTag("Player"))
+            if (Der.collider.gameObject.CompareTag("Player") && !TrampaActiva)
             {
                 Rb2D.gravityScale = 2;
                 Rb2D.bodyType = 0;
+                TrampaActiva = true;
             }
         }
 
@@ -30,20 +37,30 @@ public class PuasControl : MonoBehaviour
         Debug.DrawRay(transform.position - ControlRayCastIzq, Vector2.down * DistanciaIzq, Color.yellow);
         if (Izq.collider != null)
         {
-            if (Izq.collider.CompareTag("Player"))
+            if (Izq.collider.CompareTag("Player") && !TrampaActiva)
             {
                 Rb2D.gravityScale = 2;
                 Rb2D.bodyType = 0;
+                TrampaActiva = true;
+            }
+        }
+        if (TrampaActiva)
+        {
+            if(Tiempo < 0)
+            {
+                ActivarRb2d = true;
+            }
+            else
+            {
+                Tiempo -= Time.deltaTime;
             }
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("GROUND"))
+        if (ActivarRb2d)
         {
-            Rb2D.gravityScale = 1000;
-            Rb2D.velocity = Vector2.zero;
-            Debug.Log("hola");
+            Rb2D.gravityScale = 10000;
         }
     }
 }

@@ -22,7 +22,8 @@ public class Skeleton : MonoBehaviour
     bool Ataque = true;
     bool NegandoSpeed=false;
     bool VerAlPlayer;
-
+    bool AtaqueEnUnaDireccion = false; // para atacar en una direccion sin seguir al player
+    float TiempoDeatkDeUnaDireccion;
     public void Start()
     {
         TiempoDeRetroceso = 2f;
@@ -35,16 +36,27 @@ public class Skeleton : MonoBehaviour
         if (Vector2.Distance(transform.position, Player.transform.position) < DistanciaDeVision)// vision del Player
         {
             Reposo = true;
-            if(Player.transform.position.x > transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
-            Animator.SetBool("Movimiento", true);
-            PosX = Player.transform.position.x;
-            PosY = transform.position.y;
-            if (Ataque) { if (!NegandoSpeed) { transform.position = Vector2.MoveTowards(transform.position, new Vector2(PosX, PosY), Speed * Time.deltaTime); Animator.SetBool("MovimientoAtras", false); } }
+            if (!AtaqueEnUnaDireccion) // atacar en una sola direccion
+            {
+                TiempoDeatkDeUnaDireccion = 3f;
+                if (Player.transform.position.x > transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
+                Animator.SetBool("Movimiento", true);
+                PosX = Player.transform.position.x;
+                PosY = transform.position.y;
+                if (Ataque) { if (!NegandoSpeed) { transform.position = Vector2.MoveTowards(transform.position, new Vector2(PosX, PosY), Speed * Time.deltaTime); Animator.SetBool("MovimientoAtras", false); } }
+                else
+                {
+                    Animator.SetBool("MovimientoAtras", true);
+                    if (Player.transform.position.x > transform.position.x) { Rb2D.velocity = new Vector2(-Speed / 3, Rb2D.velocity.y); }
+                    else { Rb2D.velocity = new Vector2(Speed / 3, Rb2D.velocity.y); }
+                }
+            }
             else
             {
-                Animator.SetBool("MovimientoAtras", true);
-                if (Player.transform.position.x > transform.position.x) { Rb2D.velocity = new Vector2(-Speed / 3, Rb2D.velocity.y); }
-                else { Rb2D.velocity = new Vector2(Speed / 3, Rb2D.velocity.y); }
+                Rb2D.velocity = Vector2.zero;
+                Animator.SetBool("Movimiento", false);
+                Animator.SetBool("MovimientoAtras", false);
+                Tiempo = TiempoDeAtaque;
             }
             if(Vector2.Distance(transform.position, Player.transform.position) < DistanciaDeAtaque && Ataque)// vision de ataque
             {
@@ -53,7 +65,8 @@ public class Skeleton : MonoBehaviour
                     NegandoSpeed = true;
                     Rb2D.velocity = new Vector2(0, 0);
                     Animator.Play("Ataque");
-                    Tiempo = TiempoDeAtaque;  
+                    AtaqueEnUnaDireccion = true;// para atacar en una sola direccion
+                    Tiempo = TiempoDeAtaque;
                 }
                 else { Tiempo -= Time.deltaTime; }
 
@@ -66,7 +79,7 @@ public class Skeleton : MonoBehaviour
             NegandoSpeed = false;
             Ataque = true;
             TiempoDeRetroceso = 2f;
-            if (Reposo)
+            if (Reposo && !AtaqueEnUnaDireccion)
             {
                 if (PosInicial > transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
                 PosY = transform.position.y;
@@ -82,7 +95,7 @@ public class Skeleton : MonoBehaviour
                 Sprite.flipX = false;
             }
         }
-        if (!Ataque)
+        if (!Ataque  && !AtaqueEnUnaDireccion)// retrocede para volver a atacar
         {
             if(TiempoDeRetroceso < 0)
             {
@@ -92,9 +105,15 @@ public class Skeleton : MonoBehaviour
             }
             else { TiempoDeRetroceso -= Time.deltaTime; }
             Animator.SetBool("MovimientoAtras", true);
+
             if (Player.transform.position.x > transform.position.x) { Rb2D.velocity = new Vector2(-Speed / 3, Rb2D.velocity.y); }
             else { Rb2D.velocity = new Vector2(Speed / 3, Rb2D.velocity.y); }
         }
+        if (TiempoDeatkDeUnaDireccion < 0)
+        {
+            AtaqueEnUnaDireccion = false;
+        }
+        else { TiempoDeatkDeUnaDireccion -= Time.deltaTime; }
     }
     private void OnDrawGizmos()
     {

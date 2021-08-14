@@ -3,6 +3,7 @@
 public class Puas : MonoBehaviour
 {
     private Player_Manager DamageAlPlayer;
+    public BoxCollider2D Box;
 
     private void Awake()
     {
@@ -16,6 +17,10 @@ public class Puas : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             DamageAlPlayer.Damage(PuasControl.DamageAlPlayer, true); // colocar Dalo al player, indicando que el dalo viene de arriba
+        }
+        if (collision.gameObject.CompareTag("GROUND"))
+        {
+            Box.isTrigger=true;
         }
     }
 }
