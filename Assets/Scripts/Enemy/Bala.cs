@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bala : MonoBehaviour
 {
     public Animator Animator;
+    public int DamageToPlayer;
     public SpriteRenderer Sprite;
     public Rigidbody2D Rb2D;
     public static float Speed;
@@ -25,6 +26,7 @@ public class Bala : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            collision.gameObject.GetComponent<Player_Manager>().Damage(DamageToPlayer, false, 2);
             GameObject.Destroy(gameObject);
         }
     }

@@ -12,6 +12,7 @@ public class Player_Manager : MonoBehaviour
     public static int LLaves = 0;
     public HealthBar hb;
     public Transform RespawnPosition;
+    public Player_Attack pa;
 
     private void Awake()
     {
@@ -89,4 +90,11 @@ public class Player_Manager : MonoBehaviour
     {
         anim.SetBool("death", true);
     }
+
+    public void EndAttack()
+    {
+        pa.attack = false;
+
+    }
+
 }
