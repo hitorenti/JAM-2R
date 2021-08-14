@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6233586158546030418}
   m_Layer: 10
   m_Name: PosDer
-  m_TagString: Untagged
+  m_TagString: ENEMY
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 6233586158608230805}
   m_Layer: 10
   m_Name: PosIzq
-  m_TagString: Untagged
+  m_TagString: ENEMY
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 6233586159415127570}
   m_Layer: 0
   m_Name: SkeletoADistancia
-  m_TagString: Untagged
+  m_TagString: ENEMY
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -7,6 +7,7 @@ public class Player_Attack : MonoBehaviour
     private Animator anim;
     private bool attack;
     public int DamageToEnemy;
+    public int EnemyLayer;
 
     public float RayAttackDistance;
     public KeyCode AttackKey;
@@ -33,12 +34,12 @@ public class Player_Attack : MonoBehaviour
         if (this.GetComponent<SpriteRenderer>().flipX)
         {
 
-            hit = Physics2D.Raycast(origin, Vector2.left, RayAttackDistance);
+            hit = Physics2D.Raycast(origin, Vector2.left, RayAttackDistance, EnemyLayer);
 
         }
         else
         {
-            hit = Physics2D.Raycast(origin, Vector2.right, RayAttackDistance);
+            hit = Physics2D.Raycast(origin, Vector2.right, RayAttackDistance, EnemyLayer);
         }
         
         
@@ -77,7 +78,11 @@ public class Player_Attack : MonoBehaviour
                 }
                 else
                 {
-                    hit.GetComponent<Enemy_Damage>().Damage(damage);
+                    if (hit.name.Equals("Bala"))
+                    {
+                        hit.GetComponent<Enemy_Damage>().Damage(damage);
+
+                    }
                 }
             }
         }

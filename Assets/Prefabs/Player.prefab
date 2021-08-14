@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageToEnemy: 1
+  EnemyLayer: 9
   RayAttackDistance: 0.98
   AttackKey: 106
 --- !u!114 &2411954141753074107
@@ -220,7 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69d5fa93697cd714fb42dc6bca89ea11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PushForce: 7
   PlayerLife: 50
   hb: {fileID: 0}
   RespawnPosition: {fileID: 0}

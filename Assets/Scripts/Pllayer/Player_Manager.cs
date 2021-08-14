@@ -34,7 +34,7 @@ public class Player_Manager : MonoBehaviour
         {
             if (!pj.IsOverEnemy)
             {
-                Damage(2,false,0);
+                Damage(2,false,2);
             }
 
         }

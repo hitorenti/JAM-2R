@@ -168,3 +168,4 @@ MonoBehaviour:
   Animator: {fileID: 9037447061149598397}
   Sprite: {fileID: 2191138345189576674}
   Rb2D: {fileID: 611784135838358751}
+  WindDamage: 5

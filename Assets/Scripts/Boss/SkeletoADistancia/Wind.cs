@@ -8,6 +8,7 @@ public class Wind : MonoBehaviour
     public SpriteRenderer Sprite;
     public Rigidbody2D Rb2D;
     public static float Speed;
+    public int WindDamage;
     bool Activa = false;
     float Velocidad;
     float SpriteDireccion;
@@ -29,6 +30,7 @@ public class Wind : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine("Colision");
+            collision.gameObject.GetComponent<Player_Manager>().Damage(WindDamage, false, 0);
         }
         StartCoroutine("Colision");
     }
