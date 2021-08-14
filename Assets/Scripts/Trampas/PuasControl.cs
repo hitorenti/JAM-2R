@@ -5,7 +5,7 @@ using UnityEngine;
 public class PuasControl : MonoBehaviour
 {
     public Rigidbody2D Rb2D;
-    public static int DamageAlPlayer;
+    public static int DamageAlPlayer = 3;
 
     public float DistanciaDer;
     public Vector3 ControlRayCastDer;

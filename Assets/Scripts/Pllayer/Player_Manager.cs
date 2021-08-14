@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player_Manager : MonoBehaviour
 {
-    public float PushForce;
     public int PlayerLife;
     private int _playerLife; // Buffer
 
@@ -12,6 +11,8 @@ public class Player_Manager : MonoBehaviour
     private Player_Jump pj;
     public static int LLaves = 0;
     public HealthBar hb;
+    public Transform RespawnPosition;
+    public Player_Attack pa;
 
     private void Awake()
     {
@@ -22,18 +23,7 @@ public class Player_Manager : MonoBehaviour
 
     public void EndDeathAnimation()
     {
-        Vector2 nwPos = this.transform.position;
-
-        if (this.GetComponent<SpriteRenderer>().flipX)
-        {
-            nwPos.x += 10; //! Spawn in -10 of current position
-            this.transform.position = nwPos;
-        }
-        else
-        {
-            nwPos.x -= 10; //! Spawn in -10 of current position
-            this.transform.position = nwPos;
-        }
+        this.transform.position = RespawnPosition.position;
 
         anim.SetBool("death", false);
 
@@ -45,7 +35,7 @@ public class Player_Manager : MonoBehaviour
         {
             if (!pj.IsOverEnemy)
             {
-                Damage(0,false);
+                Damage(2,false,2);
             }
 
         }
@@ -64,7 +54,7 @@ public class Player_Manager : MonoBehaviour
     /// </summary>
     /// <param name="damage">To substract</param>
     /// <param name="UpDamage">Damage from Up?</param>
-    public void Damage(int damage,bool UpDamage)
+    public void Damage(int damage,bool UpDamage,float pushForce)
     {
         _playerLife -= damage;
 
@@ -74,12 +64,12 @@ public class Player_Manager : MonoBehaviour
             {
                 if (this.GetComponent<SpriteRenderer>().flipX)
                 {
-                    this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x + PushForce, 0.215f), this.transform.position.y);
+                    this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x + pushForce, 0.215f), this.transform.position.y);
 
                 }
                 else
                 {
-                    this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x - PushForce, 0.215f), this.transform.position.y);
+                    this.transform.position = new Vector3(Mathf.Lerp(this.transform.position.x, this.transform.position.x - pushForce, 0.215f), this.transform.position.y);
 
                 }
             }
@@ -100,4 +90,11 @@ public class Player_Manager : MonoBehaviour
     {
         anim.SetBool("death", true);
     }
+
+    public void EndAttack()
+    {
+        pa.attack = false;
+
+    }
+
 }

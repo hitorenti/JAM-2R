@@ -156,5 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 2973085496793026058}
+  DamageToPlayer: 1
   Sprite: {fileID: 144155326738446229}
   Rb2D: {fileID: 1213059469}

@@ -17,6 +17,7 @@ public class Player_Movement : MonoBehaviour
     public float DashDurationSeconds;
     public float SecondsForDestroyEnemy;
     public Player_Attack pa;
+    public BoxCollider2D AtackColl;
 
     private Rigidbody2D rb2d;
     private Animator anim;
@@ -38,12 +39,15 @@ public class Player_Movement : MonoBehaviour
             {
                 anim.SetBool("dashing", true);
                 this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                AtackColl.offset = new Vector2(Mathf.Abs(AtackColl.offset.x), AtackColl.offset.x);
 
-            }else if(rb2d.velocity.x < 0)
+
+            }
+            else if(rb2d.velocity.x < 0)
             {
                 anim.SetBool("dashing", true);
                 this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-
+                AtackColl.offset = new Vector2(-AtackColl.offset.x, AtackColl.offset.x);
             }
         }
         else
@@ -141,8 +145,8 @@ public class Player_Movement : MonoBehaviour
                 Physics2D.IgnoreCollision(collision.collider, this.GetComponent<Collider2D>());
                 // OVER ENEMY
                 int initialLayer = this.GetComponent<SpriteRenderer>().sortingOrder;
-                this.GetComponent<SpriteRenderer>().sortingOrder = 90; 
-                StartCoroutine(WaitForDestroyEnemy(collision.gameObject, initialLayer));
+                this.GetComponent<SpriteRenderer>().sortingOrder = 90;
+                StartCoroutine(WaitForDestroyEnemy(collision.collider, initialLayer));
             }
         }
     }
@@ -203,22 +207,31 @@ public class Player_Movement : MonoBehaviour
 
     }
 
-    IEnumerator WaitForDestroyEnemy(GameObject enemy,int layer)
+    IEnumerator WaitForDestroyEnemy(Collider2D enemy,int layer)
     {
         yield return new WaitForSeconds(SecondsForDestroyEnemy);
-        // Destroy enemy
-        if (enemy.name == "Empuje")
-        {
-            enemy.transform.parent.GetComponent<Enemy_Damage>().Damage(pa.DamageToEnemy+2);
 
-        }
-        else
+        if(enemy != null)
         {
-            enemy.GetComponent<Enemy_Damage>().Damage(pa.DamageToEnemy+2);
+            // Destroy enemy
+            if (enemy.name == "Empuje")
+            {
+                enemy.transform.parent.GetComponent<Enemy_Damage>().Damage(pa.DamageToEnemy + 2);
 
+            }
+            else if (enemy.tag.Equals("ENEMY") && enemy.name != "bomb")
+            {
+                enemy.GetComponent<Enemy_Damage>().Damage(pa.DamageToEnemy + 2);
+
+            }
+
+            // Set star layer
+            this.GetComponent<SpriteRenderer>().sortingOrder = layer;
+
+            // Turn off ignore collision
+            Physics2D.IgnoreCollision(enemy, this.GetComponent<Collider2D>(), false);
         }
-        // Set star layer
-        this.GetComponent<SpriteRenderer>().sortingOrder = layer;
+
 
     }
 }
