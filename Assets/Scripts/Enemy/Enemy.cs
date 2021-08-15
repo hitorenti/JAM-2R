@@ -46,6 +46,9 @@ public class Enemy : MonoBehaviour
     float PosX;
     float PosY;
     float PosXPlayer;
+    // sufrir Daño
+    public static bool SufrirDaño = false;
+    float TiempoDeDañoSufrido;
     private void Start()
     {
         ColorRango = Color.green;
@@ -53,9 +56,23 @@ public class Enemy : MonoBehaviour
         TiempoFly = TiempoDeEsperaFly;
         TiempoDeEsperaMush = 3f;
         PuntoDeInicio = transform.position;
+
+        TiempoDeDañoSufrido = 0.3f;
     }
     private void Update()
     {
+        if (SufrirDaño) { Debug.Log("Daño"); }
+        if (SufrirDaño)
+        {
+            if(TiempoDeDañoSufrido < 0)
+            {
+                TiempoDeDañoSufrido = 0.3f;
+                SufrirDaño = false;
+            }
+            else { TiempoDeDañoSufrido -= Time.deltaTime; }
+            if(TiempoDeDañoSufrido < 0.1f) { Physics2D.IgnoreLayerCollision(7, 6,true); }
+        }
+        else { Physics2D.IgnoreLayerCollision(7, 6, false); }
         switch (Cambio)
         {
             case Enemigos.bomberGoblin:
@@ -63,188 +80,210 @@ public class Enemy : MonoBehaviour
                 Rb2D.gravityScale = 1;
                 Box.offset = new Vector2(0.07384136f, -0.07636565f);
                 Box.size= new Vector2(0.6687278f, 0.9311044f);
-                if (Vector2.Distance(transform.position, Player.transform.position) < RangoDeVision)
+                if (!SufrirDaño)
                 {
-                    if (Player.transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
-                    if(TiempoDeAtaque < 0)
+                    if (Vector2.Distance(transform.position, Player.transform.position) < RangoDeVision)
                     {
-                        Animator.Play("Goblin_Ataque");
-                        if (Sprite.flipX) { Explosion.Speed = -7; } else { Explosion.Speed = 7; }
-                        TiempoDeAtaque = TiempoDeEspera;
-                    }
-                    else { TiempoDeAtaque -= Time.deltaTime; }
-                    
-                }
-                else
-                {
-                    TiempoDeAtaque -= Time.deltaTime;
-                }
+                        if (Player.transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
+                        if (TiempoDeAtaque < 0)
+                        {
+                            Animator.Play("Goblin_Ataque");
+                            if (Sprite.flipX) { Explosion.Speed = -7; } else { Explosion.Speed = 7; }
+                            TiempoDeAtaque = TiempoDeEspera;
+                        }
+                        else { TiempoDeAtaque -= Time.deltaTime; }
 
+                    }
+                    else
+                    {
+                        TiempoDeAtaque -= Time.deltaTime;
+                    }
+                }
+                else { Rb2D.velocity = Vector2.zero; }
                 break;
             case Enemigos.Fly:
-                Empujes.SetActive(false);
-                Box.offset = new Vector2(-0.01668851f, 0.0595618f);
-                Box.size = new Vector2(0.4470131f, 0.3742403f);
-                Rb2D.gravityScale = 0;
-                Animator.SetBool("Fly",true);
-                Animator.SetBool("Fly_movimiento", true);
-                transform.position = Vector2.MoveTowards(transform.position, Punto[i].transform.position,SpeedFly*Time.deltaTime);
-                if (Punto[i].transform.position.x < transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
-                if(Vector2.Distance(transform.position,Punto[i].transform.position) < 0.1f)
-                {
-
-                    if(TiempoFly < 0)
-                    {
-                        i++;
-                        TiempoFly = TiempoDeEsperaFly;
-                        if (i > 1) { i = 0; }
-                    }
-                    else
-                    {
-                        TiempoFly -= Time.deltaTime;
-                        Animator.SetBool("Fly_movimiento", false);
-                    }
-                }
-                break;
-            case Enemigos.Globin:
-                Empujes.SetActive(false);
-                Box.offset = new Vector2(0.1491423f, -0.07385114f) ;
-                Box.size = new Vector2(0.5402526f, 0.928192f);
-                Rb2D.gravityScale = 1;
-                Animator.SetBool("GloblinA_Idle", true);
-                if (Vector2.Distance(transform.position, Player.transform.position) < RangoDeVision )
-                {
-                    if (Player.transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
-                    if (TiempoDeAtaque < 0)
-                    {
-                        Animator.SetBool("GloblinA_Movimiento", false);
-                        Animator.Play("GloblinA_Ataque");
-                        if (Sprite.flipX) { Bala.Speed = -7; } else { Bala.Speed = 7; }
-                        TiempoDeAtaque = TiempoDeEspera;
-                    }
-                    else { TiempoDeAtaque -= Time.deltaTime; }
-
-                }
-                else
-                {
-                    TiempoDeAtaque -= Time.deltaTime;
-                    Animator.SetBool("GloblinA_Movimiento", true);
-                    PosX = Punto[i].transform.position.x;
-                    PosY = transform.position.y;
-                    transform.position = Vector2.MoveTowards(transform.position, new Vector2(PosX, PosY), SpeedFly * Time.deltaTime);
-                    if (Punto[i].transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
-                    if (Vector2.Distance(transform.position, new Vector2(PosX, PosY)) < 0.1f)
-                    {
-
-                        if (TiempoFly < 0)
-                        {
-                            i++;
-                            TiempoFly = TiempoDeEsperaFly;
-                            if (i > 1) { i = 0; }
-                        }
-                        else
-                        {
-                            TiempoFly -= Time.deltaTime;
-                            Animator.SetBool("GloblinA_Movimiento", false);
-                        }
-                    }
-                }
-
-                break;
-            case Enemigos.Mushroon:
-                Box.offset = new Vector2(-0.02761306f, -0.2303469f);
-                Box.size = new Vector2(0.7849402f, 0.4621089f);
-                Rb2D.gravityScale = 1;
-                Animator.SetBool("MushroonM", true);
-                if (!Empuje.SaltoActivo)
-                {
-                    Empujes.SetActive(true);
-                    PosX = Punto[i].transform.position.x;
-                    PosY = transform.position.y;
-                    transform.position = Vector2.MoveTowards(transform.position, new Vector2(PosX,PosY), SpeedFly * Time.deltaTime);
-                    if (Punto[i].transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
-                    if (Vector2.Distance(transform.position, new Vector2(PosX, PosY)) < 0.1f)
-                    {
-
-                        if (TiempoFly < 0)
-                        {
-                            i++;
-                            TiempoFly = TiempoDeEsperaFly;
-                            if (i > 1) { i = 0; }
-                        }
-                        else
-                        {
-                            TiempoFly -= Time.deltaTime;
-                            Animator.SetBool("MushroonM", false);
-                        }
-                    }
-                }
-                else
+                if (!SufrirDaño)
                 {
                     Empujes.SetActive(false);
-                    Animator.Play("Mushroon_SaltoAlPj");
-                    if(TiempoDeEsperaMush < 0)
+                    Box.offset = new Vector2(-0.01668851f, 0.0595618f);
+                    Box.size = new Vector2(0.4470131f, 0.3742403f);
+                    Rb2D.gravityScale = 0;
+                    Animator.SetBool("Fly", true);
+                    Animator.SetBool("Fly_movimiento", true);
+                    transform.position = Vector2.MoveTowards(transform.position, Punto[i].transform.position, SpeedFly * Time.deltaTime);
+                    if (Punto[i].transform.position.x < transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
+                    if (Vector2.Distance(transform.position, Punto[i].transform.position) < 0.1f)
                     {
-                        Animator.Play("Mushroon_SaltoAlPj2");
-                        TiempoDeEsperaMush = 3f;
+
+                        if (TiempoFly < 0)
+                        {
+                            i++;
+                            TiempoFly = TiempoDeEsperaFly;
+                            if (i > 1) { i = 0; }
+                        }
+                        else
+                        {
+                            TiempoFly -= Time.deltaTime;
+                            Animator.SetBool("Fly_movimiento", false);
+                        }
+                    }
+                }
+                else { Rb2D.velocity = Vector2.zero; }
+                break;
+            case Enemigos.Globin:
+                if (!SufrirDaño)
+                {
+                    Empujes.SetActive(false);
+                    Box.offset = new Vector2(0.1491423f, -0.07385114f);
+                    Box.size = new Vector2(0.5402526f, 0.928192f);
+                    Rb2D.gravityScale = 1;
+                    Animator.SetBool("GloblinA_Idle", true);
+                    if (Vector2.Distance(transform.position, Player.transform.position) < RangoDeVision)
+                    {
+                        if (Player.transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
+                        if (TiempoDeAtaque < 0)
+                        {
+                            Animator.SetBool("GloblinA_Movimiento", false);
+                            Animator.Play("GloblinA_Ataque");
+                            if (Sprite.flipX) { Bala.Speed = -7; } else { Bala.Speed = 7; }
+                            TiempoDeAtaque = TiempoDeEspera;
+                        }
+                        else { TiempoDeAtaque -= Time.deltaTime; }
+
                     }
                     else
                     {
-                        TiempoDeEsperaMush -= Time.deltaTime;
+                        TiempoDeAtaque -= Time.deltaTime;
+                        Animator.SetBool("GloblinA_Movimiento", true);
+                        PosX = Punto[i].transform.position.x;
+                        PosY = transform.position.y;
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(PosX, PosY), SpeedFly * Time.deltaTime);
+                        if (Punto[i].transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
+                        if (Vector2.Distance(transform.position, new Vector2(PosX, PosY)) < 0.1f)
+                        {
+
+                            if (TiempoFly < 0)
+                            {
+                                i++;
+                                TiempoFly = TiempoDeEsperaFly;
+                                if (i > 1) { i = 0; }
+                            }
+                            else
+                            {
+                                TiempoFly -= Time.deltaTime;
+                                Animator.SetBool("GloblinA_Movimiento", false);
+                            }
+                        }
                     }
                 }
+                else { Rb2D.velocity = Vector2.zero; }
+                break;
+            case Enemigos.Mushroon:
+                if (!SufrirDaño)
+                {
+                    Box.offset = new Vector2(-0.02761306f, -0.2303469f);
+                    Box.size = new Vector2(0.7849402f, 0.4621089f);
+                    Rb2D.gravityScale = 1;
+                    Animator.SetBool("MushroonM", true);
+                    if (!Empuje.SaltoActivo)
+                    {
+                        Empujes.SetActive(true);
+                        PosX = Punto[i].transform.position.x;
+                        PosY = transform.position.y;
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(PosX, PosY), SpeedFly * Time.deltaTime);
+                        if (Punto[i].transform.position.x < transform.position.x) { Sprite.flipX = true; } else { Sprite.flipX = false; }
+                        if (Vector2.Distance(transform.position, new Vector2(PosX, PosY)) < 0.1f)
+                        {
+
+                            if (TiempoFly < 0)
+                            {
+                                i++;
+                                TiempoFly = TiempoDeEsperaFly;
+                                if (i > 1) { i = 0; }
+                            }
+                            else
+                            {
+                                TiempoFly -= Time.deltaTime;
+                                Animator.SetBool("MushroonM", false);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Empujes.SetActive(false);
+                        Animator.Play("Mushroon_SaltoAlPj");
+                        if (TiempoDeEsperaMush < 0)
+                        {
+                            Animator.Play("Mushroon_SaltoAlPj2");
+                            TiempoDeEsperaMush = 3f;
+                        }
+                        else
+                        {
+                            TiempoDeEsperaMush -= Time.deltaTime;
+                        }
+                    }
+                }
+                else { Rb2D.velocity = Vector2.zero; }
                 break;
             case Enemigos.Slime:
-                Empujes.SetActive(false);
-                Box.offset = new Vector2(-0.004821658f, -0.2024379f);
-                Box.size = new Vector2(0.8088621f, 0.6614586f);
-                Rb2D.gravityScale = 1;
-                if (Vector2.Distance(transform.position,Player.transform.position)< RangoDeVision)
+                if (!SufrirDaño)
                 {
-                    if (Player.transform.position.x < transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
-                    Animator.SetBool("Slime_Movimiento",true);
-                    PosXPlayer = Player.transform.position.x;
-                    PosY = transform.position.y;
-                    transform.position =Vector2.MoveTowards(transform.position,new Vector2(PosXPlayer, PosY),SpeedFly*Time.deltaTime);
-                    if (TiempoDeSaltoSlime < 0 && suelo) { Rb2D.velocity = new Vector2(0, 0.3f); TiempoDeSaltoSlime = 0.17f; } else { TiempoDeSaltoSlime -= Time.deltaTime; }
-                }
-                else
-                {
-                    if (PuntoDeInicio.x < transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
-                    transform.position = Vector2.MoveTowards(transform.position, PuntoDeInicio, SpeedFly * Time.deltaTime);
-                    if(transform.position.x == PuntoDeInicio.x)
+                    Empujes.SetActive(false);
+                    Box.offset = new Vector2(-0.004821658f, -0.2024379f);
+                    Box.size = new Vector2(0.8088621f, 0.6614586f);
+                    Rb2D.gravityScale = 1;
+                    if (Vector2.Distance(transform.position, Player.transform.position) < RangoDeVision)
                     {
-                        Rb2D.velocity = Vector2.zero;
-                        Animator.SetBool("Slime", true);
-                        Animator.SetBool("Slime_Movimiento", false);
+                        if (Player.transform.position.x < transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
+                        Animator.SetBool("Slime_Movimiento", true);
+                        PosXPlayer = Player.transform.position.x;
+                        PosY = transform.position.y;
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(PosXPlayer, PosY), SpeedFly * Time.deltaTime);
+                        if (TiempoDeSaltoSlime < 0 && suelo) { Rb2D.velocity = new Vector2(0, 0.3f); TiempoDeSaltoSlime = 0.17f; } else { TiempoDeSaltoSlime -= Time.deltaTime; }
+                    }
+                    else
+                    {
+                        if (PuntoDeInicio.x < transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
+                        transform.position = Vector2.MoveTowards(transform.position, PuntoDeInicio, SpeedFly * Time.deltaTime);
+                        if (transform.position.x == PuntoDeInicio.x)
+                        {
+                            Rb2D.velocity = Vector2.zero;
+                            Animator.SetBool("Slime", true);
+                            Animator.SetBool("Slime_Movimiento", false);
+                        }
                     }
                 }
                 break;
             case Enemigos.Worm:
-                Empujes.SetActive(false);
-                Box.offset = new Vector2(-0.004821658f, -0.06888688f);
-                Box.size = new Vector2(0.8088621f, 0.3943565f);
-                Rb2D.gravityScale = 1;
-                Animator.SetBool("Worm", true);
-                PosX = Punto[i].transform.position.x;
-                PosY = transform.position.y;
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(PosX, PosY), SpeedFly * Time.deltaTime);
-                if (Punto[i].transform.position.x < transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
-                if (Vector2.Distance(transform.position, new Vector2(PosX, PosY)) < 0.1f)
+                if (!SufrirDaño)
                 {
+                    Empujes.SetActive(false);
+                    Box.offset = new Vector2(-0.004821658f, -0.06888688f);
+                    Box.size = new Vector2(0.8088621f, 0.3943565f);
+                    Rb2D.gravityScale = 1;
+                    Animator.SetBool("Worm", true);
+                    PosX = Punto[i].transform.position.x;
+                    PosY = transform.position.y;
+                    transform.position = Vector2.MoveTowards(transform.position, new Vector2(PosX, PosY), SpeedFly * Time.deltaTime);
+                    if (Punto[i].transform.position.x < transform.position.x) { Sprite.flipX = false; } else { Sprite.flipX = true; }
+                    if (Vector2.Distance(transform.position, new Vector2(PosX, PosY)) < 0.1f)
+                    {
 
-                    if (TiempoFly < 0)
-                    {
-                        i++;
-                        TiempoFly = TiempoDeEsperaFly;
-                        if (i > 1) { i = 0; }
-                    }
-                    else
-                    {
-                        TiempoFly -= Time.deltaTime;
+                        if (TiempoFly < 0)
+                        {
+                            i++;
+                            TiempoFly = TiempoDeEsperaFly;
+                            if (i > 1) { i = 0; }
+                        }
+                        else
+                        {
+                            TiempoFly -= Time.deltaTime;
+                        }
                     }
                 }
+                else { Rb2D.velocity = Vector2.zero; }
                 break;
+
         }
 
     }
@@ -282,16 +321,24 @@ public class Enemy : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("GROUND"))
+        if(collision.gameObject.CompareTag("GROUND"))
             {
             suelo = true;
         }
+
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("GROUND"))
         {
             suelo = false;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ArmaDEPlayer"))
+        {
+            SufrirDaño = true;
         }
     }
 }

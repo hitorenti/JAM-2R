@@ -14,6 +14,11 @@ public class Player_Manager : MonoBehaviour
     public Transform RespawnPosition;
     public Player_Attack pa;
 
+
+    // DAÑO AL PLAYER
+    Renderer Renderer;
+    Color C;
+    
     private void Awake()
     {
         anim = this.gameObject.GetComponent<Animator>();
@@ -39,6 +44,7 @@ public class Player_Manager : MonoBehaviour
             if (!pj.IsOverEnemy)
             {
                 Damage(2,false,2);
+     
             }
 
         }
@@ -99,5 +105,24 @@ public class Player_Manager : MonoBehaviour
         pa.attack = false;
 
     }
+    private void Start()
+    {
+        Renderer = GetComponent<Renderer>();
+        C = Renderer.material.color;
+    }
 
+    IEnumerator DañoPlayer()
+    {
+        Physics2D.IgnoreLayerCollision(3,6,true);
+        C.a = 0.5f;
+        Renderer.material.color = C;
+        yield return new WaitForSeconds(2f);
+        Physics2D.IgnoreLayerCollision(3, 6, false);
+        C.a = 1f;
+        Renderer.material.color = C;
+    }
+    public void Daño()
+    {
+        StartCoroutine("DañoPlayer");
+    }
 }

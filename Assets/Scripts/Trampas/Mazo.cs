@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Mazo : MonoBehaviour
-{
-    public Animator Animator;
+{  public Animator Animator;
     public enum Mazos
     {
         VueltaCompleta,MediaSuperior
     }
     public Mazos Cambio;
-
     private void Start()
     {
         switch (Cambio)
@@ -23,4 +21,12 @@ public class Mazo : MonoBehaviour
                 break;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
+  
+
+    
 }
