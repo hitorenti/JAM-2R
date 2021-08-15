@@ -5,7 +5,8 @@ using UnityEngine;
 public class HealthBar : MonoBehaviour
 {
     public Transform indicator;
-
+    // -4.62
+    // ind -> 4.67
     /// <summary>
     /// In range 0 to 100
     /// </summary>
@@ -13,7 +14,7 @@ public class HealthBar : MonoBehaviour
     {
         if(per <= 100 && per > 0)
         {
-            indicator.localScale = new Vector3(per/100,indicator.localScale.y, indicator.localScale.z);
+            indicator.localScale = new Vector3(per / 100, indicator.localScale.y, indicator.localScale.z);
         }
         else if( per < 0 || per == 0)
         {
