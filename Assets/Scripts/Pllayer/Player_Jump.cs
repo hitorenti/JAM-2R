@@ -37,14 +37,14 @@ public class Player_Jump : MonoBehaviour
         if (Input.GetKey("space"))
         {
             if (!pg.IsJump) { rb2d.velocity = new Vector2(rb2d.velocity.x, JumpForce); CamDoubleJump = true; }
-            else { if (DobleSalto) { if (Input.GetKeyDown(KeyCode.Space)) { if (CamDoubleJump) {  rb2d.velocity = new Vector2(rb2d.velocity.x, JumpForce); CamDoubleJump = false; } } } }
+            else { if (DobleSalto) { if (Input.GetKeyDown(KeyCode.Space)) { if (CamDoubleJump) { anim.Play("DobleSalto"); rb2d.velocity = new Vector2(rb2d.velocity.x, JumpForce); CamDoubleJump = false; } } } }
             
         }
         if (rb2d.velocity.y < 0) { rb2d.velocity += Vector2.up * Physics2D.gravity.y * (Fall) * Time.deltaTime; }
         if (rb2d.velocity.y > 0 && !Input.GetKey("space")) { rb2d.velocity += Vector2.up * Physics2D.gravity.y * (Low) * Time.deltaTime; }
     }
 
-    private void FixedUpdate()
+   /* private void FixedUpdate()
     {
        
         // For 2 different keys usage
@@ -63,5 +63,5 @@ public class Player_Jump : MonoBehaviour
     {
         yield return new WaitForSeconds(SecondsForNextJump);
         AvailableJump = true;
-    }
+    }*/
 }
