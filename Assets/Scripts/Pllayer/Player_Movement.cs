@@ -24,6 +24,17 @@ public class Player_Movement : MonoBehaviour
     private bool dashing;
     private bool NextDashingAvailable = true;
 
+    // dash
+    // Dash Simple
+    public bool DashBool;
+    float DashTiempo;
+    float DashRecuperacion;
+
+    public static bool DashActivo=false;
+    public SpriteRenderer Sprite;
+    public float DashT;
+    public float DTiempo;
+    public static float SpeedDash = 10;
     private void Awake()
     {
         rb2d = this.gameObject.GetComponent<Rigidbody2D>();
@@ -32,47 +43,85 @@ public class Player_Movement : MonoBehaviour
 
     private void Update()
     {
-        //! Animations
-        if (dashing)
+        if (!DashActivo)
         {
-            if (rb2d.velocity.x > 0)
+            //! Animations
+            if (dashing)
             {
-                anim.SetBool("dashing", true);
-                this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
-                AtackColl.offset = new Vector2(Mathf.Abs(AtackColl.offset.x), AtackColl.offset.x);
+                if (rb2d.velocity.x > 0)
+                {
+                    anim.SetBool("dashing", true);
+                    this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                    AtackColl.offset = new Vector2(Mathf.Abs(AtackColl.offset.x), AtackColl.offset.x);
 
 
+                }
+                else if (rb2d.velocity.x < 0)
+                {
+                    anim.SetBool("dashing", true);
+                    this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                    AtackColl.offset = new Vector2(-AtackColl.offset.x, AtackColl.offset.x);
+                }
             }
-            else if(rb2d.velocity.x < 0)
+            else
             {
-                anim.SetBool("dashing", true);
-                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-                AtackColl.offset = new Vector2(-AtackColl.offset.x, AtackColl.offset.x);
+                anim.SetBool("dashing", false);
+
+                if (Input.GetAxisRaw("Horizontal") == 0)
+                {
+                    anim.SetBool("run", false);
+
+                }
+                else if (rb2d.velocity.x > 0)
+                {
+                    anim.SetBool("run", true);
+                    this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+
+                }
+                else if (rb2d.velocity.x < 0)
+                {
+                    anim.SetBool("run", true);
+                    this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
+                }
             }
+        }
+
+
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            if (DashRecuperacion < 0)
+            {
+                DashBool = true;
+            }
+
+        }
+        if (DashBool)
+        {
+            DashActivo = true;
+            anim.Play("DobleSalto");
+            Physics2D.IgnoreLayerCollision(3, 6, true);
+            rb2d.velocity = Vector2.zero;
+            if (!Sprite.flipX) { transform.Translate((Vector3.right) * SpeedDash * Time.deltaTime); }
+            else { transform.Translate((Vector3.left) * SpeedDash * Time.deltaTime); }
+            rb2d.gravityScale = 0;
+            Invoke("Dash_false", 0f);
+            if (DashTiempo < 0)
+            {
+                DashTiempo = 0.3f;
+                DashBool = false;
+                DashRecuperacion = 1f;
+            }
+            else { DashTiempo -= Time.deltaTime; }
         }
         else
         {
-            anim.SetBool("dashing", false);
-
-            if (Input.GetAxisRaw("Horizontal") == 0)
-            {
-                anim.SetBool("run", false);
-
-            }
-            else if (rb2d.velocity.x > 0)
-            {
-                anim.SetBool("run", true);
-                this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
-
-            }
-            else if (rb2d.velocity.x < 0)
-            {
-                anim.SetBool("run", true);
-                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-
-            }
+            DashActivo = false;
+            rb2d.gravityScale = 1;
+            Physics2D.IgnoreLayerCollision(3, 6, false);
         }
-
+        DashRecuperacion -= Time.deltaTime;
     }
 
     private void FixedUpdate()
@@ -82,35 +131,38 @@ public class Player_Movement : MonoBehaviour
         float XDir = Input.GetAxis("Horizontal");
 
         //! Raw for detect idle state
-        if (Input.GetAxisRaw("Horizontal") == 0)
+        if (!DashActivo)
         {
-            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-            if (dashing)
+            if (Input.GetAxisRaw("Horizontal") == 0)
             {
-                StopCoroutine(Dash());
-                dashing = false;
-            }
+                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+                if (dashing)
+                {
+                    StopCoroutine(Dash());
+                    dashing = false;
+                }
 
-
-        }
-        else
-        {
-            if (dashing)
-            {
-                rb2d.velocity = new Vector2(XDir * DashSpeed, rb2d.velocity.y);
 
             }
             else
             {
-                rb2d.velocity = new Vector2(XDir * speed, rb2d.velocity.y);
+                if (dashing)
+                {
+                    rb2d.velocity = new Vector2(XDir * DashSpeed, rb2d.velocity.y);
+
+                }
+                else
+                {
+                    rb2d.velocity = new Vector2(XDir * speed, rb2d.velocity.y);
+
+                }
 
             }
-
         }
 
 
         // Dash
-        if (Input.GetKeyDown(KeyCode.F))
+       /* if (Input.GetKeyDown(KeyCode.F))
         {
 
             if (NextDashingAvailable && XDir != 0 && !dashing)
@@ -130,8 +182,8 @@ public class Player_Movement : MonoBehaviour
                 StopCoroutine(Dash());
                 dashing = false;
             }
-        }
-
+        }*/
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

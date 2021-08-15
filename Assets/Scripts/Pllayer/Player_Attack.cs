@@ -21,7 +21,7 @@ public class Player_Attack : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(AttackKey))
+        if (Input.GetKeyDown(AttackKey)&& !Player_Movement.DashActivo)
         {
             attack = true;
             Attack(enemyCollider, DamageToEnemy);

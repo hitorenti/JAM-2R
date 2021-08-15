@@ -34,7 +34,7 @@ public class Player_Jump : MonoBehaviour
         //! Animation
         anim.SetBool("jump", pg.IsJump);
 
-        if (Input.GetKey("space"))
+        if (Input.GetKey("space") && !Player_Movement.DashActivo)
         {
             if (!pg.IsJump) { rb2d.velocity = new Vector2(rb2d.velocity.x, JumpForce); CamDoubleJump = true; }
             else { if (DobleSalto) { if (Input.GetKeyDown(KeyCode.Space)) { if (CamDoubleJump) { anim.Play("DobleSalto"); rb2d.velocity = new Vector2(rb2d.velocity.x, JumpForce); CamDoubleJump = false; } } } }

@@ -3553,6 +3553,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2411954141753074117, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
   m_PrefabInstance: {fileID: 1808939079}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &619396001 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2411954141753074119, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+  m_PrefabInstance: {fileID: 1808939079}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &663912074
 GameObject:
   m_ObjectHideFlags: 0
@@ -126809,6 +126814,18 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.04498589
       objectReference: {fileID: 0}
+    - target: {fileID: 2411954141753074107, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+      propertyPath: DashT
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411954141753074107, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+      propertyPath: Sprite
+      value: 
+      objectReference: {fileID: 619396001}
+    - target: {fileID: 2411954141753074107, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+      propertyPath: DTiempo
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2411954141753074108, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
       propertyPath: RayDistance
       value: 0.6
@@ -126946,7 +126963,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7787356, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
