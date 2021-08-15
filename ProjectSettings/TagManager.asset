@@ -3,21 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - GROUND
-  - ENEMY
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Trampas
-  - Fauna
-  - Ground
-  - Enemigos
-  - MiniBoss
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -42,10 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: ENEMY
-    uniqueID: 1995935983
-    locked: 0
-  - name: UI
-    uniqueID: 1984454537
     locked: 0
