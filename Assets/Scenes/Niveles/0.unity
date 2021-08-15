@@ -110179,6 +110179,22 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2411954141753074106, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.4329567
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411954141753074106, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8475282
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411954141753074106, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.03213215
+      objectReference: {fileID: 0}
+    - target: {fileID: 2411954141753074106, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.04498589
+      objectReference: {fileID: 0}
     - target: {fileID: 2411954141753074108, guid: 96650fe04e2a91647b334ade679fad6d, type: 3}
       propertyPath: RayDistance
       value: 0.6
@@ -110308,7 +110324,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7787356, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
