@@ -23,7 +23,10 @@ public class Player_Manager : MonoBehaviour
 
     public void EndDeathAnimation()
     {
-        this.transform.position = RespawnPosition.position;
+        // offset
+        Vector2 nwPos = RespawnPosition.position;
+        nwPos.x += 5;
+        this.transform.position = nwPos;
 
         anim.SetBool("death", false);
 
